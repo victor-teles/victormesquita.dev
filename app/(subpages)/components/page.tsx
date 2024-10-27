@@ -1,6 +1,6 @@
 import Badge from '@components/badge'
 import Button from '@components/button'
-import { Github } from '@components/icons'
+import { GitHub } from '@components/icons'
 import Link from '@components/link'
 import styles from './page.module.css'
 import * as FileTree from '@components/file-tree'
