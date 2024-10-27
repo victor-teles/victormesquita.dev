@@ -127,9 +127,7 @@ export const getProjects = cache(async (): Promise<Project[]> => {
         const user = split[3]
         const repo = split[4]
         const fetchUrl =
-          process.env.NODE_ENV === 'production'
-            ? `https://api.github.com/repos/${user}/${repo}`
-            : 'http://localhost:3000/mock-stars-response.json'
+          `https://api.github.com/repos/${user}/${repo}`
         const { stargazers_count, message } = await (
           await fetch(fetchUrl, {
             headers: {
