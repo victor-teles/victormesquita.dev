@@ -15,9 +15,7 @@ const FilterableList = <T extends Base>({
     enableTags = true
 }: {
     items: Array<T>
-    // eslint-disable-next-line no-unused-vars
     renderItem: (item: T) => React.ReactNode
-    // eslint-disable-next-line no-unused-vars
     tags?: (item: T) => Array<string>
     enableSearch?: boolean
     enableTags?: boolean
@@ -93,7 +91,7 @@ const FilterableList = <T extends Base>({
                         style={selectedTag ? {} : selectedBadgeStyles}
                     >
                         <Link href={tagHref('')} scroll={false} style={linkStyles}>
-                            All
+                            Todos
                         </Link>
                     </Badge>
                     {allTags.map(([tag, count]) => (

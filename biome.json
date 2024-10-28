@@ -22,7 +22,8 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useValidAriaRole": "off"
       },
       "suspicious":{
         "noExplicitAny": "off"

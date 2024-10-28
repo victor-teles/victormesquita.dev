@@ -3,11 +3,11 @@ import Link from '@components/link'
 const AboutMe = () => (
   <>
     <p>
-      I&apos;m currently working at{' '}
+      Atualmente trabalhando na {' '}
       <Link href="https://www.sqala.tech/" external>
         Sqala
       </Link>
-      . I&apos;m interested in tech, open source, fundamental UX/UI design and building some piece of good software.
+      . Estou interessado em tech, open source, UX/UI design e construindo softwares legais (eu acho).
     </p>
   </>
 )

@@ -31,7 +31,7 @@ const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) =
       })}
       {seeMore && (
         <li>
-          See some more on <Link href="/projects"> this page</Link>
+          Veja mais <Link href="/projects"> nesta página</Link>
         </li>
       )}
     </ul>

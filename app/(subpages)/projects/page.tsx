@@ -3,7 +3,7 @@ import { getProjects } from '@lib/projects'
 
 export const metadata = {
   title: 'Projects',
-  description: 'Most of my projects',
+  description: 'Meus projetos mais interessantes',
   alternates: {
     canonical: 'https://victormesquita.dev/projects',
   },

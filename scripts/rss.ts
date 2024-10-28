@@ -1,6 +1,6 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import RSS from 'rss'
-import path from 'path'
+import path from 'node:path'
 import { marked } from 'marked'
 import matter from 'gray-matter'
 import { Note, Post } from '@lib/types'

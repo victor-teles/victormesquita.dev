@@ -1,9 +1,9 @@
 import Link from '@components/link'
-import { Note, Post } from '@lib/types'
+import { Note, Post, Review } from '@lib/types'
 
 import styles from './navigation.module.css'
 
-const Navigation = ({ previous, next }: { previous?: Note | Post; next?: Note | Post }) => {
+const Navigation = ({ previous, next }: { previous?: Note | Post | Review; next?: Note | Post | Review }) => {
   return (
     <nav className={styles.navigation}>
       <div className={styles.previous}>

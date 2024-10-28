@@ -17,10 +17,10 @@ export default async function HomePage() {
       <AboutMe />
       <Socials />
 
-      <h2 style={{ padding: 'var(--gap-quarter) 0' }}> Articles 📝 </h2>
+      <h2 style={{ padding: 'var(--gap-quarter) 0' }}> Artigos 📝 </h2>
       <ContentListRSC />
 
-      <h2 style={{ padding: 'var(--gap-quarter) 0' }}>My projects ✨</h2>
+      <h2 style={{ padding: 'var(--gap-quarter) 0' }}>Meus projetos ✨</h2>
       <ProjectList
         showYears={false}
         projects={(projects).slice(0, PROJECT_COUNT)}
@@ -29,7 +29,7 @@ export default async function HomePage() {
 
       <footer className={styles.footer}>
         <span>
-          <Link href="/about">About this site</Link>
+          <Link href="/about">Sobre este site</Link>
           {process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ? (
             <span className={styles.gitSha}>
               <Link

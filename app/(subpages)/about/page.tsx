@@ -1,8 +1,8 @@
 import Link from '@components/link'
 
 export const metadata = {
-  title: 'About',
-  description: 'About this website.',
+  title: 'Sobre',
+  description: 'Sobre esse site.',
   alternates: {
     canonical: 'https://victormesquita.dev/about',
   },
@@ -12,19 +12,19 @@ const About = () => {
   return (
     <article>
       <p>
-        This site is built {' '} by Max Leiter and modified by me {' '} with {' '}
+        Este site foi feito {' '} pelo Max Leiter e modificado por mim {' '} usando {' '}
         <Link external href="https://nextjs.com">
-          Next.js 13
+          Next.js 15
         </Link>{' '}
-        App Directory and is deployed via{' '}
+         e é hospedado via{' '}
         <Link external href="https://vercel.com/home">
           Vercel
         </Link>
-        . The icons are from{' '}
+        . Os ícones são da{' '}
         <Link external href="https://lucide.dev/icons/">
           Lucid Icons
         </Link>
-        . You can view the source on{' '}
+        . E você pode ver o código fonte em{' '}
         <Link external href="https://github.com/victor-teles/victormesquita.dev">
           GitHub
         </Link>

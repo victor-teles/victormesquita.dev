@@ -1,7 +1,7 @@
 import matter from 'gray-matter'
-import path from 'path'
+import path from 'node:path'
 import type { Post } from './types'
-import fs from 'fs/promises'
+import fs from 'node:fs/promises'
 import { cache } from 'react'
 import { unstable_cache } from 'next/cache'
 
