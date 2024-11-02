@@ -2,8 +2,8 @@ import React, { type FC } from 'react';
 import styles from './Configuration.module.css';
 
 import data from '../../configurationData';
-import type { IModalInputDataItem, IParams } from '../../types';
 import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import type { IModalInputDataItem, IParams } from '../../types';
 
 interface IProps {
   isOpened: boolean;

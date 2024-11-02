@@ -1,18 +1,18 @@
-import { useState, useMemo, useEffect, type FC } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 
 import styles from './Performance.module.css';
 
-import type { IData, IParams } from '../../types';
-import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import configurationData from '../../configurationData';
 import { DELAY } from '../../constants';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import type { IData, IParams } from '../../types';
+import Logo from '../../utils/Logo';
 import getSubArray from '../../utils/getSubArray';
+import CPUChart from '../CpuChart/CPUChart';
+import JoinsSelector from '../JoinsSelector/JoinsSelector';
 import LatencyChart from '../LatencyChart/LatencyChart';
 import ReqsChart from '../ReqsChart/ReqsChart';
-import CPUChart from '../CpuChart/CPUChart';
-import Logo from '../../utils/Logo';
-import configurationData from '../../configurationData';
 import RuntimeSelector from '../RuntimeSelector/RuntimeSelector';
-import JoinsSelector from '../JoinsSelector/JoinsSelector';
 
 interface Props {
   selectedItems: IParams;

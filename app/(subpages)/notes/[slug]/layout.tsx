@@ -1,11 +1,11 @@
-import getPosts from '@lib/get-posts';
 import Navigation from '@components/content-footer/navigation';
 import PostFooter from '@components/content-footer/post-footer';
-import styles from '../../blog/[slug]/layout.module.css';
-import { Metadata } from 'next';
 import getNotes from '@lib/get-notes';
-import { JSX } from 'react';
+import getPosts from '@lib/get-posts';
+import { Metadata } from 'next';
 import Image from 'next/image';
+import { JSX } from 'react';
+import styles from '../../blog/[slug]/layout.module.css';
 
 export async function generateStaticParams() {
   const posts = await getPosts();

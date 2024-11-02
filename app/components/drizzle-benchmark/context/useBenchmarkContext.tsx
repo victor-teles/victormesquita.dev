@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode, useRef } from 'react';
+import { type ReactNode, createContext, useContext, useRef, useState } from 'react';
 import { type IData, type IParams } from '../types';
 
 // Define the shape of your treatment context

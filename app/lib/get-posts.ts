@@ -1,9 +1,9 @@
-import matter from 'gray-matter';
-import path from 'node:path';
-import type { Post } from './types';
 import fs from 'node:fs/promises';
-import { cache } from 'react';
+import path from 'node:path';
+import matter from 'gray-matter';
 import { unstable_cache } from 'next/cache';
+import { cache } from 'react';
+import type { Post } from './types';
 
 const thirdPartyPosts: Post[] = [
   {

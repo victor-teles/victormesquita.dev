@@ -3,8 +3,8 @@
 import { useState } from 'react';
 
 import BlockEntry from '@components/entry/block';
-import styles from './posts-list.module.css';
 import type { Post } from '@lib/types';
+import styles from './posts-list.module.css';
 
 type Props =
   | {

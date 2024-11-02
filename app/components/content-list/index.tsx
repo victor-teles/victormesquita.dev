@@ -1,9 +1,9 @@
 import FilterableList from '@components/filterable-list';
 import getNotes from '@lib/get-notes';
 import getPosts from '@lib/get-posts';
-import { getTag, renderItem } from './render-item';
-import { Suspense } from 'react';
 import getReviews from '@lib/get-reviews';
+import { Suspense } from 'react';
+import { getTag, renderItem } from './render-item';
 
 export async function ContentListRSC() {
   const [posts, notes, reviews] = await Promise.all([getPosts(true), getNotes(), getReviews()]);

@@ -1,6 +1,6 @@
+import { clsx } from 'clsx';
 import React from 'react';
 import styles from './layout-outline.module.css';
-import { clsx } from 'clsx';
 
 type Props = {
   name: string;

@@ -1,11 +1,11 @@
-import Socials from '@components/socials';
-import ProjectList from '@components/projects';
-import Link from '@components/link';
 import AboutMe from '@components/aboutme';
-import { getProjects } from '@lib/projects';
-import styles from './page.module.css';
-import TimeOfDay from '../../timer';
 import { ContentListRSC } from '@components/content-list';
+import Link from '@components/link';
+import ProjectList from '@components/projects';
+import Socials from '@components/socials';
+import { getProjects } from '@lib/projects';
+import TimeOfDay from '../../timer';
+import styles from './page.module.css';
 
 const PROJECT_COUNT = 3;
 

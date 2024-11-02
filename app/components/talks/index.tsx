@@ -1,14 +1,14 @@
 // @ts-nocheck
 'use client';
 
+import Badge from '@components/badge';
+import PostFooter from '@components/content-footer/post-footer';
+import Input from '@components/input';
 import React from 'react';
+import tagStyles from './tags.module.css';
+import styles from './talks.module.css';
 // import type { Talk } from 'app/(subpages)/talks/page-backup'
 import VideoCard from './video-card';
-import styles from './talks.module.css';
-import Input from '@components/input';
-import PostFooter from '@components/content-footer/post-footer';
-import Badge from '@components/badge';
-import tagStyles from './tags.module.css';
 
 type SortOption = 'date' | 'title' | 'views' | 'likes' | 'length';
 type Talk = any;

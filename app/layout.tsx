@@ -1,10 +1,10 @@
 import styles from './layout.module.css';
 import '@styles/global.css';
-import { GeistMono } from 'geist/font/mono';
-import { Montserrat } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from 'next-themes';
+import { GeistMono } from 'geist/font/mono';
 import { Viewport } from 'next';
+import { ThemeProvider } from 'next-themes';
+import { Montserrat } from 'next/font/google';
 
 export const dynamic = 'force-static';
 

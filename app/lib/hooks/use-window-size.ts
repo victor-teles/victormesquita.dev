@@ -1,5 +1,5 @@
 // https://usehooks.com/useWindowSize/
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Define general type for useWindowSize hook, which includes width and height
 interface Size {

@@ -1,7 +1,7 @@
 import React, { type FC } from 'react';
 
-import styles from './JoinsSelector.module.css';
 import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import styles from './JoinsSelector.module.css';
 
 interface Item {
   value: boolean;

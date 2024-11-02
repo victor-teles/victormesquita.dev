@@ -1,6 +1,6 @@
+import Talks from '@data/talks.json';
 // import { Talk } from 'app/(subpages)/talks/page-backup'
 import { Client, Video } from 'youtubei';
-import Talks from '@data/talks.json';
 type Talk = any;
 const youtube = new Client();
 

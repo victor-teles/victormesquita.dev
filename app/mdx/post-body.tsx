@@ -1,14 +1,14 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import remarkGfm from 'remark-gfm';
-import remarkFrontmatter from 'remark-frontmatter';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 // @ts-expect-error no types
 import remarkA11yEmoji from '@fec/remark-a11y-emoji';
+import { recmaCodeHike, remarkCodeHike } from 'codehike/mdx';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 import { mdxComponents } from './components';
-import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
 
 /** @type {import('codehike/mdx').CodeHikeConfig} */
 const chConfig = {

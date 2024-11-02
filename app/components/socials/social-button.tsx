@@ -1,9 +1,9 @@
 'use client';
 
+import Link from '@components/link';
 import Tooltip from '@components/tooltip';
 import { track } from '@vercel/analytics/react';
 import styles from './socials.module.css';
-import Link from '@components/link';
 
 type SocialButtonProps = {
   href: string;

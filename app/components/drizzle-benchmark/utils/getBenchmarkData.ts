@@ -1,5 +1,5 @@
-import { type IData, type IParams } from '../types';
 import data from '../data/data.json';
+import { type IData, type IParams } from '../types';
 import dataMapper from './dataMapper';
 
 const variants = [

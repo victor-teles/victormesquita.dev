@@ -1,6 +1,6 @@
 import { type FC } from 'react';
-import { type IParams } from '../../types';
 import configurationData from '../../configurationData';
+import { type IParams } from '../../types';
 import styles from './BenchmarkConfig.module.css';
 
 interface Props {

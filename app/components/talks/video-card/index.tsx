@@ -5,12 +5,12 @@ import FadeIn from '@components/fade-in';
 import Info from '@components/icons/info';
 import Play from '@components/icons/play';
 import Link from '@components/link';
+import secondsToTime from '@lib/seconds-to-time';
 import Image from 'next/image';
 // import type { Talk } from 'app/(subpages)/talks/page-backup'
 import { useState } from 'react';
-import styles from './video-card.module.css';
 import tagStyles from '../tags.module.css';
-import secondsToTime from '@lib/seconds-to-time';
+import styles from './video-card.module.css';
 type Talk = any;
 
 const VideoCard = ({

@@ -1,5 +1,5 @@
-import { type IData } from '../types';
 import data from '../data/demoData.json';
+import { type IData } from '../types';
 import dataMapper from './dataMapper';
 
 const getDemoBenchmarkData = (): null | {

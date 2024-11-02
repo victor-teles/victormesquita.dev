@@ -1,14 +1,14 @@
-import { MDXComponents } from 'mdx/types';
-import NextImage from 'next/image';
-import { MDXNote } from './mdx-note';
-import { MDXImage } from './mdx-image';
-import Info from '@components/icons/info';
-import { FileTree, File, Folder } from '@components/file-tree';
-import Home from '@components/icons/home';
-import { Tweet } from 'react-tweet';
 import { Code } from '@components/code';
 import { InlineCode } from '@components/code/inline-code';
 import DrizzleBenchmark from '@components/drizzle-benchmark/MdxBenchmark';
+import { File, FileTree, Folder } from '@components/file-tree';
+import Home from '@components/icons/home';
+import Info from '@components/icons/info';
+import { MDXComponents } from 'mdx/types';
+import NextImage from 'next/image';
+import { Tweet } from 'react-tweet';
+import { MDXImage } from './mdx-image';
+import { MDXNote } from './mdx-note';
 
 export const mdxComponents: MDXComponents = {
   Code,

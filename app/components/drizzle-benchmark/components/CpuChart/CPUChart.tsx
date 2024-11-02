@@ -1,4 +1,4 @@
-import { type FC, useState, useRef, useEffect, useMemo } from 'react';
+import { type FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import { CheckIcon } from '../../Icons';
 import { SVGViewBoxHeight, SVGViewBoxWidth } from '../../constants';

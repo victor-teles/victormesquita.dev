@@ -1,13 +1,13 @@
 'use client';
 
 import Box from '@components/icons/box';
+import FileIcon from '@components/icons/file';
 import FolderMinus from '@components/icons/folder-minus';
 import FolderPlus from '@components/icons/folder-plus';
-import FileIcon from '@components/icons/file';
 import Layout from '@components/icons/layout';
+import Link from '@components/link';
 import React, { PropsWithChildren, useState } from 'react';
 import styles from './file-tree.module.css';
-import Link from '@components/link';
 
 type FileProps = {
   type: string;

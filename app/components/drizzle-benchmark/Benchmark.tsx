@@ -1,9 +1,9 @@
-import styles from './Benchmark.module.css';
 import { useEffect, useMemo, useState } from 'react';
+import styles from './Benchmark.module.css';
 import DemoPerformance from './components/DemoPerformance/DemoPerformance';
+import { BenchmarkProvider } from './context/useBenchmarkContext';
 import { type IData } from './types';
 import getDemoBenchmarkData from './utils/getDemoBenchmarkData';
-import { BenchmarkProvider } from './context/useBenchmarkContext';
 
 const Benchmark = () => {
   const [isShaking] = useState<boolean>(false);

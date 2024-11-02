@@ -1,8 +1,8 @@
 'use client';
 
-import { BenchmarkProvider } from './context/useBenchmarkContext';
-import ControlPanel from './components/ControlPanel/ControlPanel';
 import styles from './MdxBenchmark.module.css';
+import ControlPanel from './components/ControlPanel/ControlPanel';
+import { BenchmarkProvider } from './context/useBenchmarkContext';
 
 const MDXBenchmark = () => {
   return (

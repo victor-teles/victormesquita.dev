@@ -1,6 +1,6 @@
+import { GitHub, Mail, RSS, Twitter } from '@components/icons';
 import { SocialButton } from './social-button';
 import styles from './socials.module.css';
-import { GitHub, Twitter, Mail, RSS } from '@components/icons';
 
 const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
   return (

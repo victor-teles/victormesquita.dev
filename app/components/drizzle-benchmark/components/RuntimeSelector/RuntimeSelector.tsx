@@ -1,9 +1,9 @@
 import React, { type FC, useRef } from 'react';
 
-import styles from './RuntimeSelector.module.css';
 import { useBenchmarkContext } from '../../context/useBenchmarkContext';
 import BunIcon from '../RuntimeSelector/BunIcon';
 import NodeIcon from '../RuntimeSelector/NodeIcon';
+import styles from './RuntimeSelector.module.css';
 
 interface Item {
   value: 'node-22' | 'node-18' | 'node-20' | 'bun';

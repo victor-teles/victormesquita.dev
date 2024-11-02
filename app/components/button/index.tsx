@@ -1,7 +1,7 @@
-import styles from './button.module.css';
-import { forwardRef } from 'react';
-import clsx from 'clsx';
 import { Spinner } from '@components/spinner';
+import clsx from 'clsx';
+import { forwardRef } from 'react';
+import styles from './button.module.css';
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   children?: React.ReactNode;

@@ -1,15 +1,15 @@
-import { useState, type FC, useEffect } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import styles from './DemoPerformance.module.css';
 
+import configurationData from '../../configurationData';
 import type { IData } from '../../types';
+import Logo from '../../utils/Logo';
+import CPUChart from '../CpuChart/CPUChart';
+import JoinsSelector from '../JoinsSelector/JoinsSelector';
 import LatencyChart from '../LatencyChart/LatencyChart';
 import ReqsChart from '../ReqsChart/ReqsChart';
-import CPUChart from '../CpuChart/CPUChart';
-import Logo from '../../utils/Logo';
-import configurationData from '../../configurationData';
 import RuntimeSelector from '../RuntimeSelector/RuntimeSelector';
-import JoinsSelector from '../JoinsSelector/JoinsSelector';
 
 interface Props {
   data: IData[] | null;

@@ -1,6 +1,6 @@
-import type { Project } from './types';
-import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
+import { cache } from 'react';
+import type { Project } from './types';
 
 const Projects: Project[] = [
   {

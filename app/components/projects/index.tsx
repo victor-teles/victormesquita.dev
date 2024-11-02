@@ -1,6 +1,6 @@
+import { Entry } from '@components/entry';
 import Link from '@components/link';
 import styles from './projects.module.css';
-import { Entry } from '@components/entry';
 
 import type { Project } from '@lib/types';
 

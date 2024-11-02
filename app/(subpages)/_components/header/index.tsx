@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
-import styles from './header.module.css';
 import ThemeSwitcher from '@components/theme-switcher';
+import styles from './header.module.css';
 
 const Header = ({ children }: PropsWithChildren) => {
   return (

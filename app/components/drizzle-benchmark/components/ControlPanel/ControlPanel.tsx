@@ -1,17 +1,17 @@
-import { useEffect, useMemo, useState, type FC } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 
-import styles from './ControlPanel.module.css';
 import type { IData } from '../../types.ts';
+import styles from './ControlPanel.module.css';
 
-import SpeedSelector from '../SpeedSelector/SpeedSelector';
+import ArrowRight from '../../ArrowRight';
+import OptionsIcon from '../../OptionsIcon';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import getBenchmarkData from '../../utils/getBenchmarkData';
+import BenchmarkConifg from '../BenchmarkConfig/BenchmarkConfig';
 import Configuration from '../Configuration/Configuration';
 import Performance from '../Performance/Performance';
-import { useBenchmarkContext } from '../../context/useBenchmarkContext';
-import OptionsIcon from '../../OptionsIcon';
-import ArrowRight from '../../ArrowRight';
-import BenchmarkConifg from '../BenchmarkConfig/BenchmarkConfig';
-import getBenchmarkData from '../../utils/getBenchmarkData';
 import Rewind from '../Rewind/Rewind';
+import SpeedSelector from '../SpeedSelector/SpeedSelector';
 
 interface Props {
   minWidth?: number;

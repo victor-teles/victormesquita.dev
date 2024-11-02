@@ -1,11 +1,11 @@
 'use client';
 import Badge from '@components/badge';
 import Input from '@components/input';
+import { Base } from '@lib/types';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import styles from './filterable-list.module.css';
-import { Base } from '@lib/types';
-import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 
 const FilterableList = <T extends Base>({
   items,
