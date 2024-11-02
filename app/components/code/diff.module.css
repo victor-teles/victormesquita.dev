@@ -1,0 +1,12 @@
+.diff {
+  display: inline-block;
+  min-width: 1ch;
+  box-sizing: content-box;
+  opacity: 0.7;
+  padding-left: .5rem;
+  user-select: none;
+}
+
+.line {
+  display: flex;
+}

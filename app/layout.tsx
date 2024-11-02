@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${font.className} ${GeistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${font.className} ${GeistMono.variable} dark`}>
       <body>
         <ThemeProvider>
           <div className={styles.wrapper}>

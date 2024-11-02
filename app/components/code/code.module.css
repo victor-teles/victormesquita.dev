@@ -1,0 +1,16 @@
+.frame {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: var(--lightest-gray);
+  border-radius: .25rem;
+  position: relative;
+}
+
+.title {
+  color: var(--fg);
+  font-size: .875rem;
+  line-height: 1.25rem;
+  text-align: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}

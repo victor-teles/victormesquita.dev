@@ -1,0 +1,14 @@
+.lineNumbers {
+  display: flex;
+}
+
+.lineNumber {
+  opacity: 0.5;
+  text-align: right;
+  user-select: none;
+}
+
+.innerLine {
+  padding-left: .5rem;
+  flex: 1 1 0%;
+}

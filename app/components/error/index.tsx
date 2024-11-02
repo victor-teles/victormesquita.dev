@@ -15,9 +15,9 @@ const Error = async ({ status, posts: postsPromise }: Props) => {
       {status === 404 ? (
         <section>
           <h1 className={styles.first}>
-            This is not the page you are looking for.
+            Está talvez seja a página que você está procurando.
           </h1>
-          <h2 className={styles.second}>Maybe it was one of these?</h2>
+          <h2 className={styles.second}>Talvez alguma dessas 👇?</h2>
           <span className={styles.third}>
             <PostsList paginate={true} posts={posts} />
           </span>
@@ -25,7 +25,7 @@ const Error = async ({ status, posts: postsPromise }: Props) => {
       ) : (
         <section className={styles.section}>
           <span>{status || '?'}</span>
-          <p>An error occurred.</p>
+          <p>Um erro ocorreu.</p>
         </section>
       )}
     </>

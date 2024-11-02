@@ -52,7 +52,7 @@ article ol {
   padding: 0;
   list-style-position: inside;
 }
-/* 
+/*
 article ol li:not(:last-child),
 article ul li:not(:last-child) {
   margin-bottom: var(--gap);

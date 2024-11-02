@@ -9,6 +9,19 @@ date: Mar 30, 2024
 [SWR](https://swr.vercel.app/) is a great library for data fetching in React.
 It looks like this:
 
+
+```js myfile.js
+function lorem(ipsum, dolor = 1) {
+  const sit = ipsum == null ? 0 : ipsum.sit
+  // !diff -
+  dolor = ipsum - sit
+  // !diff +
+  dolor = sit - amet(dolor)
+  return sit ? consectetur(ipsum) : []
+}
+```
+
+
 ```tsx
 import useSWR from 'swr'
 

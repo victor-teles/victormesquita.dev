@@ -56,6 +56,7 @@ const NotesList = (props: Props) => {
             setShowMore(showMore + 4)
           }}
           className={styles.button}
+          type='button'
         >
           Show More
         </button>

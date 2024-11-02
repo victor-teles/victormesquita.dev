@@ -4,6 +4,7 @@ import PostFooter from '@components/content-footer/post-footer'
 import styles from './layout.module.css'
 import { Metadata } from 'next'
 import { JSX } from 'react'
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -57,7 +58,7 @@ export default async function PostLayout({
   }>
 }) {
   const { slug } = await params
-  const { previous, next, title, date, lastModified } = await getData({ slug })
+  const { previous, next, title, date, lastModified, description } = await getData({ slug })
 
   const lastModifiedDate = lastModified
     ? new Date(lastModified).toLocaleDateString('en-US', {
@@ -78,8 +79,15 @@ export default async function PostLayout({
         ) : null}
         {/* {updatedViews && <FadeIn>{updatedViews} views</FadeIn>} */}
       </div>
-      <article>
+      <article className="prose prose-slate">
         <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{description}</p>
+
+        <div className={styles.avatar}>
+          <Image src="/imgs/profile.jpeg" alt="Esse sou eu" width={30} height={30} className={styles.img} />
+          <span><span className={styles.writtenBy}>Escrito por</span> Victor Mesquita</span>
+        </div>
+
         {children}
       </article>
       <PostFooter />

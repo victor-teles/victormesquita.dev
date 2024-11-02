@@ -5,6 +5,7 @@ import styles from '../../blog/[slug]/layout.module.css';
 import { Metadata } from 'next';
 import getReviews from '@lib/get-reviews';
 import { JSX } from 'react';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -56,15 +57,22 @@ export default async function PostLayout({
   }>;
 }) {
   const { slug } = await params;
-  const { previous, next, title, date } = await getData({ slug });
+  const { previous, next, title, date, description } = await getData({ slug });
 
   return (
     <>
       <div className={styles.wrapper}>
         <span className={styles.date}>{date}</span>
       </div>
-      <article>
+      <article className="prose prose-slate">
         <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{description}</p>
+
+        <div className={styles.avatar}>
+          <Image src="/imgs/profile.jpeg" alt="Esse sou eu" width={30} height={30} className={styles.img} />
+          <span><span className={styles.writtenBy}>Escrito por</span> Victor Mesquita</span>
+        </div>
+
         {children}
       </article>
       <PostFooter />
