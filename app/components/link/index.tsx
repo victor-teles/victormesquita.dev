@@ -1,19 +1,19 @@
-import clsx from 'clsx'
-import NextLink from 'next/link'
+import clsx from 'clsx';
+import NextLink from 'next/link';
 
-import styles from './link.module.css'
+import styles from './link.module.css';
 
 // Inherit default link props from NextLink or <a>
-type LinkProps = React.ComponentProps<typeof NextLink>
+type LinkProps = React.ComponentProps<typeof NextLink>;
 type Props = LinkProps & {
-  external?: boolean
-  href: string
-  title?: string
-  children: React.ReactNode
-  className?: string
-  underline?: boolean
-  tabIndex?: number
-}
+  external?: boolean;
+  href: string;
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
+  underline?: boolean;
+  tabIndex?: number;
+};
 
 const Link = ({
   external,
@@ -25,11 +25,7 @@ const Link = ({
   tabIndex = 0,
   ...props
 }: Props) => {
-  const className = clsx(
-    styles.link,
-    underline && styles.underline,
-    classNameProp
-  )
+  const className = clsx(styles.link, underline && styles.underline, classNameProp);
 
   if (external) {
     return (
@@ -44,20 +40,14 @@ const Link = ({
       >
         {children}
       </a>
-    )
+    );
   }
 
   return (
-    <NextLink
-      href={href}
-      title={title}
-      className={className}
-      {...props}
-      tabIndex={tabIndex}
-    >
+    <NextLink href={href} title={title} className={className} {...props} tabIndex={tabIndex}>
       {children}
     </NextLink>
-  )
-}
+  );
+};
 
-export default Link
+export default Link;

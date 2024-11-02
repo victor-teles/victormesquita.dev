@@ -1,18 +1,18 @@
-import { useState, useMemo, useEffect, type FC } from "react";
+import { useState, useMemo, useEffect, type FC } from 'react';
 
-import styles from "./Performance.module.css";
+import styles from './Performance.module.css';
 
-import type { IData, IParams } from "../../types";
-import { useBenchmarkContext } from "../../context/useBenchmarkContext";
-import { DELAY } from "../../constants";
-import getSubArray from "../../utils/getSubArray";
-import LatencyChart from "../LatencyChart/LatencyChart";
-import ReqsChart from "../ReqsChart/ReqsChart";
-import CPUChart from "../CpuChart/CPUChart";
-import Logo from "../../utils/Logo";
-import configurationData from "../../configurationData";
-import RuntimeSelector from "../RuntimeSelector/RuntimeSelector";
-import JoinsSelector from "../JoinsSelector/JoinsSelector";
+import type { IData, IParams } from '../../types';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import { DELAY } from '../../constants';
+import getSubArray from '../../utils/getSubArray';
+import LatencyChart from '../LatencyChart/LatencyChart';
+import ReqsChart from '../ReqsChart/ReqsChart';
+import CPUChart from '../CpuChart/CPUChart';
+import Logo from '../../utils/Logo';
+import configurationData from '../../configurationData';
+import RuntimeSelector from '../RuntimeSelector/RuntimeSelector';
+import JoinsSelector from '../JoinsSelector/JoinsSelector';
 
 interface Props {
   selectedItems: IParams;
@@ -24,14 +24,7 @@ interface Props {
   maxDataLength: number;
 }
 
-const Performance: FC<Props> = ({
-  isConfigOpen,
-  maxElements,
-  data,
-  speed,
-  compareData,
-  maxDataLength,
-}) => {
+const Performance: FC<Props> = ({ isConfigOpen, maxElements, data, speed, compareData, maxDataLength }) => {
   const {
     isTimerActive,
     setIsTimerActive,
@@ -44,9 +37,7 @@ const Performance: FC<Props> = ({
     setConcatedDataCompare,
     selectedItems,
   } = useBenchmarkContext();
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
-    null,
-  );
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
   const [max, setMax] = useState<number>(1);
   const [maxRequests, setMaxRequests] = useState<number>(1);
 
@@ -97,47 +88,37 @@ const Performance: FC<Props> = ({
     setConcatedDataDrizzle(getSubArray(data, index, maxElements));
     setConcatedDataCompare(getSubArray(compareData, index, maxElements));
 
-    const maxLatency = Math.max(
-      data[index].max.latency,
-      compareData[index].max.latency,
-    );
+    const maxLatency = Math.max(data[index].max.latency, compareData[index].max.latency);
     setMax(maxLatency);
-    const maxRequestsTemp = Math.max(
-      data[index].max.reqs,
-      compareData[index].max.reqs,
-    );
+    const maxRequestsTemp = Math.max(data[index].max.reqs, compareData[index].max.reqs);
     setMaxRequests(maxRequestsTemp);
   }, [index]);
 
   return (
-    <div className={isConfigOpen ? styles["wrap-hide"] : styles.wrap}>
-      <div className={styles["compare-item-container"]}>
-        <div className={styles["compare-item"]}>
-          <div className={styles["compare-icon-wrap"]}>
+    <div className={isConfigOpen ? styles['wrap-hide'] : styles.wrap}>
+      <div className={styles['compare-item-container']}>
+        <div className={styles['compare-item']}>
+          <div className={styles['compare-icon-wrap']}>
             <Logo logo="drizzle" />
           </div>
           <div>
             <div className={styles.name}>Drizzle</div>
-            <div className={styles.version}>
-              {configurationData.orm.items[selectedItems.orm].drizzle_version}
-            </div>
+            <div className={styles.version}>{configurationData.orm.items[selectedItems.orm].drizzle_version}</div>
           </div>
         </div>
         <RuntimeSelector />
       </div>
-      <div className={styles["compare-item-container"]}>
-        <div className={styles["compare-item"]}>
-          <div className={styles["compare-icon-wrap"]}>
+      <div className={styles['compare-item-container']}>
+        <div className={styles['compare-item']}>
+          <div className={styles['compare-icon-wrap']}>
             <Logo logo={selectedItems.orm} />
           </div>
           <div>
             <div className={styles.name}>{selectedItems.orm}</div>
-            <div className={styles.version}>
-              {configurationData.orm.items[selectedItems.orm].compare_version}
-            </div>
+            <div className={styles.version}>{configurationData.orm.items[selectedItems.orm].compare_version}</div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: 'flex', gap: '12px' }}>
           <RuntimeSelector />
           <JoinsSelector />
         </div>
@@ -150,9 +131,7 @@ const Performance: FC<Props> = ({
           max={max}
           maxDataLength={maxElements}
           averageLatency={data ? data[index].avg.latency : 0}
-          averageLatencyCompare={
-            compareData ? compareData[index].avg.latency : 0
-          }
+          averageLatencyCompare={compareData ? compareData[index].avg.latency : 0}
           averageP99={data ? data[index].avg.p95 : 0}
           averageP99Compare={compareData ? compareData[index].avg.p95 : 0}
           showTooltip

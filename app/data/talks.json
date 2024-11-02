@@ -33,25 +33,12 @@
     {
       "description": "What can we learn from SQL, Prolog, ML, and Smalltalk? You might notice a trend on this page due to my interest in early programming languages... This video also has *great* charts of the introduction of language paradigms.",
       "url": "https://www.youtube.com/watch?v=0fpDlAEQio4",
-      "tags": [
-        "SQL",
-        "Prolog",
-        "ML",
-        "Smalltalk",
-        "NDC Oslo",
-        "Language design"
-      ]
+      "tags": ["SQL", "Prolog", "ML", "Smalltalk", "NDC Oslo", "Language design"]
     },
     {
       "description": "Dan Ingalls, the original implementor and designer of the Smalltalk virtual machine at Xerox PARC, demonstrates the power of Smalltalk on the Alto. Sprinkled with great Xerox PARC stories.",
       "url": "https://www.youtube.com/watch?v=uknEhXyZgsg",
-      "tags": [
-        "Smalltalk",
-        "Alto",
-        "Xerox PARC",
-        "Language design",
-        "Operating systems"
-      ]
+      "tags": ["Smalltalk", "Alto", "Xerox PARC", "Language design", "Operating systems"]
     },
     {
       "description": "Dylan Beattie imagines if the web was created with an alternate history: no google, no FireFox, no WWW.",
@@ -61,12 +48,7 @@
     {
       "description": "Why is Rust a good investment for 'future-proof' software?",
       "url": "https://www.youtube.com/watch?v=A3AdN7U24iU",
-      "tags": [
-        "Rust",
-        "Compilers",
-        "Emerging Technologies Conf",
-        "Language design"
-      ]
+      "tags": ["Rust", "Compilers", "Emerging Technologies Conf", "Language design"]
     },
     {
       "description": "Andrew Kelley demonstrates the flexibility and power of Zig by creating a portable Vulkan program with no libc dependency.",

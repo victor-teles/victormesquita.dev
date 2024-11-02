@@ -1,4 +1,4 @@
-import fixedHelper from "./fixedHelper";
+import fixedHelper from './fixedHelper';
 
 const formatMs = (ms: number) => {
   if (ms < 100) return `${ms.toFixed(1)}ms`;

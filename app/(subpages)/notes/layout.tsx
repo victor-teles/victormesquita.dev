@@ -1,4 +1,4 @@
-import Outline from '@components/layout-outline'
+import Outline from '@components/layout-outline';
 
 export const metadata = {
   title: 'Dev Notes',
@@ -6,16 +6,16 @@ export const metadata = {
   alternates: {
     canonical: 'https://victormesquita.dev/notes',
   },
-}
+};
 
 export default function BlogLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <Outline type="layout" name="Blog">
       <article>{children}</article>
     </Outline>
-  )
+  );
 }

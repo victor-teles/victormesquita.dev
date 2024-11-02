@@ -1,4 +1,4 @@
-import { type IData } from "../types";
+import { type IData } from '../types';
 
 const getSubArray = (arr: IData[], index: number, maxLength: number) => {
   if (index < 0 || index >= arr.length || maxLength <= 0) {

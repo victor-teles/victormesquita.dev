@@ -70,7 +70,9 @@ export default async function PostLayout({
 
         <div className={styles.avatar}>
           <Image src="/imgs/profile.jpeg" alt="Esse sou eu" width={30} height={30} className={styles.img} />
-          <span><span className={styles.writtenBy}>Escrito por</span> Victor Mesquita</span>
+          <span>
+            <span className={styles.writtenBy}>Escrito por</span> Victor Mesquita
+          </span>
         </div>
 
         {children}

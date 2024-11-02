@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-  useRef,
-} from "react";
-import { type IData, type IParams } from "../types";
+import { createContext, useContext, useState, type ReactNode, useRef } from 'react';
+import { type IData, type IParams } from '../types';
 
 // Define the shape of your treatment context
 interface BenchmarkContextProps {
@@ -23,17 +17,13 @@ interface BenchmarkContextProps {
 }
 
 // Create the BenchmarkContext
-const BenchmarkContext = createContext<BenchmarkContextProps | undefined>(
-  undefined,
-);
+const BenchmarkContext = createContext<BenchmarkContextProps | undefined>(undefined);
 
 // Create a custom hook to access the BenchmarkContext
 export function useBenchmarkContext() {
   const context = useContext(BenchmarkContext);
   if (!context) {
-    throw new Error(
-      "useBenchmarkContext must be used within a BenchmarkProvider",
-    );
+    throw new Error('useBenchmarkContext must be used within a BenchmarkProvider');
   }
   return context;
 }
@@ -50,12 +40,12 @@ export function BenchmarkProvider({ children }: BenchmarkProviderProps) {
   const [concatedDataCompare, setConcatedDataCompare] = useState<IData[]>([]);
   const [isTimerActive, setIsTimerActive] = useState<boolean>(true);
   const [selectedItems, setSelectedItems] = useState<IParams>({
-    orm: "prisma",
-    dbSize: "micro",
-    projectType: "ecommerce",
-    database: "postgres",
+    orm: 'prisma',
+    dbSize: 'micro',
+    projectType: 'ecommerce',
+    database: 'postgres',
     joins: false,
-    runtime: "node-22",
+    runtime: 'node-22',
   });
 
   const contextValue: BenchmarkContextProps = {
@@ -72,9 +62,5 @@ export function BenchmarkProvider({ children }: BenchmarkProviderProps) {
     setSelectedItems,
   };
 
-  return (
-    <BenchmarkContext.Provider value={contextValue}>
-      {children}
-    </BenchmarkContext.Provider>
-  );
+  return <BenchmarkContext.Provider value={contextValue}>{children}</BenchmarkContext.Provider>;
 }

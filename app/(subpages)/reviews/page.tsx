@@ -1,9 +1,7 @@
-import { ReviewsListRSC } from '@components/reviews-list/rsc'
+import { ReviewsListRSC } from '@components/reviews-list/rsc';
 
 const Reviews = async () => {
-  return (
-    <ReviewsListRSC paginate={true} />
-  )
-}
+  return <ReviewsListRSC paginate={true} />;
+};
 
-export default Reviews
+export default Reviews;

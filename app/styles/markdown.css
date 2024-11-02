@@ -86,7 +86,7 @@ article *:not(pre) > code {
 
 article *:not(pre) > code::before,
 article *:not(pre) > code::after {
-  content: '\`';
+  content: "\`";
   color: var(--gray);
   user-select: none;
 }
@@ -114,7 +114,7 @@ article div + pre {
   text-decoration: none;
 }
 
-article a  {
+article a {
   text-decoration: none;
 }
 
@@ -131,7 +131,7 @@ sup {
 
 .header-link::after {
   opacity: 0;
-  content: '#';
+  content: "#";
   margin-left: var(--gap-half);
   color: var(--gray);
 }

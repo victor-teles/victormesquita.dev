@@ -1,7 +1,7 @@
 // answer: 0 is CSS,
 const toCSSMarkdown = (text: string) => {
-  return text
-}
+  return text;
+};
 // body {
 
 // }
@@ -61,6 +61,6 @@ const questions = [
     order: 1;
 }`),
   },
-]
+];
 
-export default questions
+export default questions;

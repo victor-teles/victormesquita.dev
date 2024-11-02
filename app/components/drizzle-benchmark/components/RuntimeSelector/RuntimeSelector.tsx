@@ -1,12 +1,12 @@
-import React, { type FC, useRef } from "react";
+import React, { type FC, useRef } from 'react';
 
-import styles from "./RuntimeSelector.module.css";
-import { useBenchmarkContext } from "../../context/useBenchmarkContext";
-import BunIcon from "../RuntimeSelector/BunIcon";
-import NodeIcon from "../RuntimeSelector/NodeIcon";
+import styles from './RuntimeSelector.module.css';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
+import BunIcon from '../RuntimeSelector/BunIcon';
+import NodeIcon from '../RuntimeSelector/NodeIcon';
 
 interface Item {
-  value: "node-22" | "node-18" | "node-20" | "bun";
+  value: 'node-22' | 'node-18' | 'node-20' | 'bun';
   name: string;
 }
 
@@ -15,16 +15,16 @@ const RuntimeSelector: FC = () => {
   const resizerRef = useRef<HTMLDivElement | null>(null);
 
   const items: Item[] = [
-    { value: "bun", name: "Bun v1.1.25" },
-    { value: "node-22", name: "Node 22.6.0 (Current)" },
-    { value: "node-20", name: "Node v20.16.0 (LTS)" },
-    { value: "node-18", name: "Node v18.20.4 (LTS)" },
+    { value: 'bun', name: 'Bun v1.1.25' },
+    { value: 'node-22', name: 'Node 22.6.0 (Current)' },
+    { value: 'node-20', name: 'Node v20.16.0 (LTS)' },
+    { value: 'node-18', name: 'Node v18.20.4 (LTS)' },
   ];
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSelectedItems({
       ...selectedItems,
-      runtime: e.target.value as "node-22" | "node-18" | "node-20" | "bun",
+      runtime: e.target.value as 'node-22' | 'node-18' | 'node-20' | 'bun',
     });
   };
 
@@ -32,20 +32,20 @@ const RuntimeSelector: FC = () => {
     <>
       <div
         ref={resizerRef}
-        id={"resizer"}
+        id={'resizer'}
         className={styles.button}
         style={{
-          position: "absolute",
-          top: "-9999px",
-          left: "-9999px",
-          visibility: "hidden",
-          whiteSpace: "nowrap",
+          position: 'absolute',
+          top: '-9999px',
+          left: '-9999px',
+          visibility: 'hidden',
+          whiteSpace: 'nowrap',
         }}
       >
         {items.find(({ value }) => value === selectedItems.runtime)!.name}
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        {selectedItems.runtime === "bun" ? (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {selectedItems.runtime === 'bun' ? (
           <div className={styles.icon}>
             <BunIcon />
           </div>
@@ -59,9 +59,7 @@ const RuntimeSelector: FC = () => {
           onChange={handleChange}
           value={selectedItems.runtime}
           style={{
-            width: resizerRef.current
-              ? `${resizerRef.current.offsetWidth}px`
-              : "109px",
+            width: resizerRef.current ? `${resizerRef.current.offsetWidth}px` : '109px',
           }}
         >
           {items.map((item) => (

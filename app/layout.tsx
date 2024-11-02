@@ -1,23 +1,23 @@
-import styles from './layout.module.css'
-import '@styles/global.css'
+import styles from './layout.module.css';
+import '@styles/global.css';
 import { GeistMono } from 'geist/font/mono';
-import { Montserrat } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from 'next-themes'
-import { Viewport } from 'next'
+import { Montserrat } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from 'next-themes';
+import { Viewport } from 'next';
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-static';
 
 const font = Montserrat({
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   subsets: ['latin'],
-})
+});
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${font.className} ${GeistMono.variable} dark`}>
@@ -31,7 +31,7 @@ export default function RootLayout({
         {/* {process.env.NODE_ENV === 'development' ? <VercelToolbar /> : null} */}
       </body>
     </html>
-  )
+  );
 }
 
 export const metadata = {
@@ -77,11 +77,11 @@ export const metadata = {
       'application/rss+xml': 'https://victormesquita.dev/feed.xml',
     },
   },
-}
+};
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#f5f5f5' },
     { media: '(prefers-color-scheme: dark)', color: '#000' },
   ],
-}
+};

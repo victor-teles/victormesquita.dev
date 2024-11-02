@@ -1,9 +1,7 @@
-import { PostListRSC } from '@components/posts-list/rsc'
+import { PostListRSC } from '@components/posts-list/rsc';
 
 const Blog = async () => {
-  return (
-    <PostListRSC paginate={true} />
-  )
-}
+  return <PostListRSC paginate={true} />;
+};
 
-export default Blog
+export default Blog;

@@ -1,14 +1,14 @@
 // https://www.joshwcomeau.com/snippets/react-components/fade-in/
 
-import { ReactNode } from 'react'
-import styles from './fade.module.css'
+import { ReactNode } from 'react';
+import styles from './fade.module.css';
 
 type Props = {
-  children: ReactNode
-  duration?: number
-  delay?: number
-  className?: string
-}
+  children: ReactNode;
+  duration?: number;
+  delay?: number;
+  className?: string;
+};
 
 const FadeIn = ({ duration = 300, delay = 0, children, className }: Props) => {
   return (
@@ -21,7 +21,7 @@ const FadeIn = ({ duration = 300, delay = 0, children, className }: Props) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default FadeIn
+export default FadeIn;

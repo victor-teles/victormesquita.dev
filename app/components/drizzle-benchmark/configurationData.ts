@@ -14,98 +14,98 @@ const configurationData: {
   };
 } = {
   orm: {
-    value: "ORM",
+    value: 'ORM',
     items: {
       prisma: {
-        value: "Drizzle vs Prisma",
-        config_info: "Drizzle vs Prisma",
-        drizzle_version: "v0.33.0",
-        compare_version: "v5.18.0",
+        value: 'Drizzle vs Prisma',
+        config_info: 'Drizzle vs Prisma',
+        drizzle_version: 'v0.33.0',
+        compare_version: 'v5.18.0',
       },
       typeorm: {
-        value: "Drizzle vs TypeORM",
-        config_info: "Drizzle vs TypeORM",
+        value: 'Drizzle vs TypeORM',
+        config_info: 'Drizzle vs TypeORM',
         disabled: true,
       },
     },
   },
   dbSize: {
-    value: "Database size",
+    value: 'Database size',
     items: {
       micro: {
-        value: "Micro",
-        description: "43mb",
-        config_info: "Micro database size",
+        value: 'Micro',
+        description: '43mb',
+        config_info: 'Micro database size',
       },
       small: {
-        value: "Small",
+        value: 'Small',
         disabled: true,
       },
       medium: {
-        value: "Medium",
+        value: 'Medium',
         disabled: true,
       },
       large: {
-        value: "Large",
+        value: 'Large',
         disabled: true,
       },
       huge: {
-        value: "Huge",
+        value: 'Huge',
         disabled: true,
       },
       extreme: {
-        value: "Extreme",
+        value: 'Extreme',
         disabled: true,
       },
     },
   },
   projectType: {
-    value: "Project type",
+    value: 'Project type',
     items: {
       ecommerce: {
-        value: "E-commerce",
-        config_info: "E-commerce",
+        value: 'E-commerce',
+        config_info: 'E-commerce',
       },
       social: {
-        value: "Social with messaging",
-        config_info: "Social with messaging",
+        value: 'Social with messaging',
+        config_info: 'Social with messaging',
         disabled: true,
       },
       geo: {
-        value: "Geo queries heavy",
+        value: 'Geo queries heavy',
         disabled: true,
       },
       analytics: {
-        value: "Analytics with time series",
+        value: 'Analytics with time series',
         disabled: true,
       },
     },
   },
   database: {
-    value: "Database",
+    value: 'Database',
     items: {
       postgres: {
-        value: "PostgreSQL",
-        config_info: "PostgreSQL",
+        value: 'PostgreSQL',
+        config_info: 'PostgreSQL',
       },
       mysql: {
-        value: "MySQL",
+        value: 'MySQL',
         disabled: true,
       },
       sqlite: {
-        value: "SQLite",
+        value: 'SQLite',
         disabled: true,
       },
       serverless_postgres: {
-        value: "Serverless PostgreSQL",
+        value: 'Serverless PostgreSQL',
         disabled: true,
       },
       serverless_mysql: {
-        value: "Serverless MySQL",
+        value: 'Serverless MySQL',
         disabled: true,
       },
       serverless_sqlite: {
-        value: "Serverless SQLite",
+        value: 'Serverless SQLite',
         disabled: true,
       },
     },

@@ -1,9 +1,9 @@
-import React, { type FC } from "react";
-import styles from "./Configuration.module.css";
+import React, { type FC } from 'react';
+import styles from './Configuration.module.css';
 
-import data from "../../configurationData";
-import type { IModalInputDataItem, IParams } from "../../types";
-import { useBenchmarkContext } from "../../context/useBenchmarkContext";
+import data from '../../configurationData';
+import type { IModalInputDataItem, IParams } from '../../types';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
 
 interface IProps {
   isOpened: boolean;
@@ -11,7 +11,7 @@ interface IProps {
 
 const Configuration: FC<IProps> = ({ isOpened }) => {
   const { selectedItems, setSelectedItems } = useBenchmarkContext();
-  const [currentTab, setCurrentTab] = React.useState<string>("orm");
+  const [currentTab, setCurrentTab] = React.useState<string>('orm');
 
   const changeTab = (tab: string) => {
     setCurrentTab(tab);
@@ -27,16 +27,14 @@ const Configuration: FC<IProps> = ({ isOpened }) => {
   };
 
   return (
-    <div className={isOpened ? styles["wrap-opened"] : styles.wrap}>
+    <div className={isOpened ? styles['wrap-opened'] : styles.wrap}>
       <div className={styles.tabs}>
         {Object.keys(selectedItems)
-          .filter((k) => k !== "runtime" && k !== "joins")
+          .filter((k) => k !== 'runtime' && k !== 'joins')
           .map((item) => (
             <button
               type="button"
-              className={
-                currentTab === item ? styles["active-tab"] : styles.tab
-              }
+              className={currentTab === item ? styles['active-tab'] : styles.tab}
               key={item}
               onClick={() => changeTab(item)}
             >
@@ -52,9 +50,7 @@ const Configuration: FC<IProps> = ({ isOpened }) => {
               <button
                 type="button"
                 className={
-                  selectedItems[currentTab as keyof IParams] === item
-                    ? styles["active-option"]
-                    : styles.option
+                  selectedItems[currentTab as keyof IParams] === item ? styles['active-option'] : styles.option
                 }
                 key={item}
                 onClick={() => selectItem(option, item)}
@@ -64,14 +60,10 @@ const Configuration: FC<IProps> = ({ isOpened }) => {
                   <div className={styles.title}>
                     {option.value}
                     {!option.disabled && option.description && (
-                      <div className={styles.description}>
-                        → {option.description}
-                      </div>
+                      <div className={styles.description}>→ {option.description}</div>
                     )}
                   </div>
-                  {option.disabled && (
-                    <div className={styles.disabled}>coming soon</div>
-                  )}
+                  {option.disabled && <div className={styles.disabled}>coming soon</div>}
                 </div>
               </button>
             );

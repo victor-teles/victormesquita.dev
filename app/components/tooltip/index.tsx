@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import type { ReactNode } from 'react'
-import React from 'react'
-import styles from './tooltip.module.css'
+import type { ReactNode } from 'react';
+import React from 'react';
+import styles from './tooltip.module.css';
 
 const Tooltip = ({
   children,
@@ -10,12 +10,12 @@ const Tooltip = ({
   direction = 'top',
   ...otherProps
 }: {
-  text: string
-  children: ReactNode | ReactNode[]
-  direction?: 'top' | 'right' | 'bottom' | 'left'
+  text: string;
+  children: ReactNode | ReactNode[];
+  direction?: 'top' | 'right' | 'bottom' | 'left';
 }) => {
   return (
-    <span className={styles.tooltip} data-label={text} data-direction={direction}{...otherProps}>
+    <span className={styles.tooltip} data-label={text} data-direction={direction} {...otherProps}>
       {React.Children.map(
         children,
         (child) =>
@@ -23,10 +23,10 @@ const Tooltip = ({
           React.cloneElement(child, {
             // @ts-ignore
             'aria-label': text,
-          })
+          }),
       )}
     </span>
-  )
-}
+  );
+};
 
-export default Tooltip
+export default Tooltip;

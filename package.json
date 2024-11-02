@@ -2,9 +2,9 @@
   "name": "blog",
   "version": "1.0.0",
   "scripts": {
-    "ci": "biome check src",
-    "lint": "biome check src --write",
-    "format": "biome format --write src",
+    "ci": "biome check app",
+    "lint": "biome check app --write",
+    "format": "biome format --write app",
     "dev": "next dev",
     "build": "concurrently \"yarn:build-*\"",
     "build-next": "next build",

@@ -1,25 +1,25 @@
-import { AnnotationHandler, InnerLine } from "codehike/code"
-import styles from "./mark.module.css"
+import { AnnotationHandler, InnerLine } from 'codehike/code';
+import styles from './mark.module.css';
 
 export const mark: AnnotationHandler = {
-  name: "mark",
+  name: 'mark',
   Line: ({ annotation, ...props }) => {
-    const color = annotation?.query || "rgb(14 165 233)"
+    const color = annotation?.query || 'rgb(14 165 233)';
     return (
       <div
         className={styles.line}
         style={{
-          borderLeft: "solid 2px transparent",
+          borderLeft: 'solid 2px transparent',
           borderLeftColor: annotation && color,
           backgroundColor: annotation && `rgb(from ${color} r g b / 0.1)`,
         }}
       >
         <InnerLine merge={props} className={styles.inner} />
       </div>
-    )
+    );
   },
   Inline: ({ annotation, children }) => {
-    const color = annotation?.query || "rgb(14 165 233)"
+    const color = annotation?.query || 'rgb(14 165 233)';
     return (
       <span
         className={styles.inline}
@@ -30,6 +30,6 @@ export const mark: AnnotationHandler = {
       >
         {children}
       </span>
-    )
+    );
   },
-}
+};

@@ -1,23 +1,23 @@
-import { TerminalWindow } from '@components/terminal'
-import getNotes, { getNote } from '@lib/get-notes'
-import { Code } from 'bright'
-import { notFound } from 'next/navigation'
+import { TerminalWindow } from '@components/terminal';
+import getNotes, { getNote } from '@lib/get-notes';
+import { Code } from 'bright';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  const posts = await getNotes()
-  return posts.map((post) => ({ slug: post.slug }))
+  const posts = await getNotes();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function NotePage({
   params,
 }: {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }) {
-  const { slug } = await params
-  const post = await getNote(slug)
-  if (!post) return notFound()
+  const { slug } = await params;
+  const post = await getNote(slug);
+  if (!post) return notFound();
 
   const src = `
 ---
@@ -28,11 +28,13 @@ date: ${post.date}
 type: ${post.type}
 ---
 ${post.body.trim()}
-`
+`;
 
-  return <TerminalWindow>
-    <Code lang="mdx" style={{ margin: 0, padding: 0 }}>
-      {src.trim()}
-    </Code>
-  </TerminalWindow>
+  return (
+    <TerminalWindow>
+      <Code lang="mdx" style={{ margin: 0, padding: 0 }}>
+        {src.trim()}
+      </Code>
+    </TerminalWindow>
+  );
 }

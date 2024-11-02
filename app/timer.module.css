@@ -13,11 +13,10 @@
 
 .button::before {
   @media (min-width: 768px) {
-    content: 'Rio de Janeiro:';
+    content: "Rio de Janeiro:";
   }
 
   @media (max-width: 767px) {
-    content: 'RJ:';
+    content: "RJ:";
   }
 }
-

@@ -1,28 +1,28 @@
 // import { Talk } from 'app/(subpages)/talks/page-backup'
-import { Client, Video } from 'youtubei'
-import Talks from '@data/talks.json'
-type Talk = any
-const youtube = new Client()
+import { Client, Video } from 'youtubei';
+import Talks from '@data/talks.json';
+type Talk = any;
+const youtube = new Client();
 
 const getTalks = async (): Promise<Array<Talk>> => {
-  const promises = Talks.talks.map(({ url }) => youtube.getVideo<Video>(url))
-  const results = await Promise.all(promises)
+  const promises = Talks.talks.map(({ url }) => youtube.getVideo<Video>(url));
+  const results = await Promise.all(promises);
   const resultsWithDescription = results.map((video) => {
     const talk = Talks.talks.find(({ url }) => {
-      const id = url.split('=')[1]
-      return id === video?.id
-    })
+      const id = url.split('=')[1];
+      return id === video?.id;
+    });
     if (!video) {
-      console.log(`Could not find video`)
-      return undefined
+      console.log(`Could not find video`);
+      return undefined;
     }
     return {
       myDescription: talk?.description || '',
       ...video,
       // After video because we don't care about the youtube video tags, just ours and i'm lazy
       tags: talk?.tags || [],
-    }
-  })
+    };
+  });
 
   const filtered = resultsWithDescription
     .map((result) => {
@@ -40,13 +40,13 @@ const getTalks = async (): Promise<Array<Talk>> => {
           likes: result.likeCount,
           tags: result.tags,
           lengthSeconds: result.duration,
-        }
+        };
       }
-      return null
+      return null;
     })
-    .filter((result) => result !== null) as Array<Talk>
+    .filter((result) => result !== null) as Array<Talk>;
 
-  return filtered
-}
+  return filtered;
+};
 
-export default getTalks
+export default getTalks;

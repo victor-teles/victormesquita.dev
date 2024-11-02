@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { type FC } from 'react';
 
-import styles from "./SpeedSelector.module.css";
+import styles from './SpeedSelector.module.css';
 
 interface IProps {
   speed: number;
@@ -15,11 +15,7 @@ const SpeedSelector: FC<IProps> = ({ speed, setSpeed }) => {
   };
 
   return (
-    <select
-      className={styles.button}
-      value={speed}
-      onChange={handleChange}
-    >
+    <select className={styles.button} value={speed} onChange={handleChange}>
       {items.map((item) => (
         <option key={item} value={item}>
           {item}x

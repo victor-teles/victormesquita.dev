@@ -1,17 +1,17 @@
-import React from 'react'
-import styles from './layout-outline.module.css'
-import { clsx } from 'clsx'
+import React from 'react';
+import styles from './layout-outline.module.css';
+import { clsx } from 'clsx';
 
 type Props = {
-  name: string
-  children: React.ReactNode
-  type: 'page' | 'layout'
-}
+  name: string;
+  children: React.ReactNode;
+  type: 'page' | 'layout';
+};
 
-const RENDER = false
+const RENDER = false;
 
 function Outline({ name, children, type }: Props) {
-  if (!RENDER) return <>{children}</>
+  if (!RENDER) return <>{children}</>;
 
   return (
     <div className={clsx(styles['layout-outline'], styles[type])}>
@@ -20,7 +20,7 @@ function Outline({ name, children, type }: Props) {
       </div>
       {children}
     </div>
-  )
+  );
 }
 
-export default Outline
+export default Outline;

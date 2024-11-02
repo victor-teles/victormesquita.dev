@@ -8,5 +8,5 @@ export default function robots() {
     ],
     sitemap: 'https://victormesquita.dev/sitemap.xml',
     host: 'https://victormesquita.dev',
-  }
+  };
 }

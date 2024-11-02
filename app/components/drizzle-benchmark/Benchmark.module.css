@@ -10,7 +10,7 @@
   font-weight: 600;
 }
 
-html[class~=dark] .description {
+html[class~="dark"] .description {
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -25,7 +25,7 @@ html[class~=dark] .description {
   margin-bottom: 4px;
 }
 
-html[class~=dark] .container {
+html[class~="dark"] .container {
   border: 1px solid #2b2b2b;
   background-color: #1a1a1a;
 }
@@ -40,7 +40,8 @@ html[class~=dark] .container {
   position: relative;
 }
 
-.image-dark, .image-light {
+.image-dark,
+.image-light {
   width: 910px;
   min-width: 910px;
   flex-shrink: 0;
@@ -54,15 +55,15 @@ html[class~=dark] .container {
   display: block;
 }
 
-html[class~=dark] .image-light {
+html[class~="dark"] .image-light {
   display: none;
 }
 
-html[class~=dark] .image-dark {
+html[class~="dark"] .image-dark {
   display: block;
 }
 
-html[class~=dark] .bottom {
+html[class~="dark"] .bottom {
   color: #f9f9f9;
 }
 
@@ -76,7 +77,8 @@ html[class~=dark] .bottom {
   gap: 8px;
 }
 
-.how-it-works:hover, .github:hover {
+.how-it-works:hover,
+.github:hover {
   text-decoration: underline;
   text-decoration-style: dashed;
 }
@@ -101,10 +103,16 @@ html[class~=dark] .bottom {
   justify-content: center;
 }
 
-html[class~=dark] .only-desktop {
+html[class~="dark"] .only-desktop {
   color: #f0f0f0;
   background-color: rgb(17, 17, 17);
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(0, 0, 0, 0.075) 0px 2px 4px 0px;
+  box-shadow:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(
+      0,
+      0,
+      0,
+      0.1
+    ) 0px 1px 2px 0px, rgba(0, 0, 0, 0.075) 0px 2px 4px 0px;
 }
 
 .only-desktop {
@@ -115,24 +123,32 @@ html[class~=dark] .only-desktop {
   padding: 8px;
   border-radius: 8px;
   background-color: #ffffff;
-  box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(0, 0, 0, 0.075) 0px 2px 4px 0px;
+  box-shadow:
+    rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(
+      0,
+      0,
+      0,
+      0.075
+    ) 0px 2px 4px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 100%;
 }
 
-html[class~=dark] .start, html[class~=dark] .start-shaked {
+html[class~="dark"] .start,
+html[class~="dark"] .start-shaked {
   color: #282828;
   background-color: rgb(226, 232, 240);
 }
 
-html[class~=dark] .benchmark_link {
+html[class~="dark"] .benchmark_link {
   color: #282828;
   background-color: rgb(226, 232, 240);
 }
 
-.start, .start-shaked {
+.start,
+.start-shaked {
   padding: 16px 32px;
   border-radius: 4px;
   color: #ffffff;
@@ -199,11 +215,21 @@ html[class~=dark] .benchmark_link {
 }
 
 @keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(5px) }
-  50% { transform: translateX(-5px) }
-  75% { transform: translateX(5px) }
-  100% { transform: translateX(0) }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 1190px) {

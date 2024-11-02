@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
-import BlockEntry from '@components/entry/block'
-import styles from '../posts-list/posts-list.module.css'
-import type { Note } from '@lib/types'
+import BlockEntry from '@components/entry/block';
+import styles from '../posts-list/posts-list.module.css';
+import type { Note } from '@lib/types';
 
 type Props =
   | {
-    notes: Note[]
-    paginate?: boolean
-  }
+      notes: Note[];
+      paginate?: boolean;
+    }
   | {
-    skeleton: true
-  }
+      skeleton: true;
+    };
 
 const NotesList = (props: Props) => {
-  const [showMore, setShowMore] = useState(4)
+  const [showMore, setShowMore] = useState(4);
 
   if ('skeleton' in props) {
     return (
@@ -25,10 +25,10 @@ const NotesList = (props: Props) => {
           <BlockEntry key={i} skeleton />
         ))}
       </ul>
-    )
+    );
   }
 
-  const { notes, paginate } = props
+  const { notes, paginate } = props;
 
   return (
     <ul className={styles.container}>
@@ -37,7 +37,7 @@ const NotesList = (props: Props) => {
           month: 'numeric',
           day: 'numeric',
           year: 'numeric',
-        })
+        });
 
         return (
           <BlockEntry
@@ -48,21 +48,21 @@ const NotesList = (props: Props) => {
             date={new Date(date)}
             description={note.description}
           />
-        )
+        );
       })}
       {paginate && showMore < notes.length && (
         <button
           onClick={() => {
-            setShowMore(showMore + 4)
+            setShowMore(showMore + 4);
           }}
           className={styles.button}
-          type='button'
+          type="button"
         >
           Show More
         </button>
       )}
     </ul>
-  )
-}
+  );
+};
 
-export default NotesList
+export default NotesList;

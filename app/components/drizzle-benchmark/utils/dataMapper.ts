@@ -1,7 +1,4 @@
-import type {
-  IData,
-  IJSONData,
-} from "../types";
+import type { IData, IJSONData } from '../types';
 
 export default (data: IJSONData[]): IData[] => {
   return data
@@ -29,25 +26,14 @@ export default (data: IJSONData[]): IData[] => {
     .map((newItem, index, self) => {
       const sliced = self.slice(0, index + 1);
 
-      const p95 =
-        sliced.reduce((prev, next) => prev + next.latency.p95, 0) /
-        sliced.length;
-      const cpus =
-        sliced.reduce((prev, next) => prev + next.cpus.cpus, 0) / sliced.length;
-      const latency =
-        sliced.reduce((prev, next) => prev + next.latency.avg, 0) /
-        sliced.length;
-      const reqs =
-        sliced.reduce((prev, next) => prev + next.reqs, 0) / sliced.length;
+      const p95 = sliced.reduce((prev, next) => prev + next.latency.p95, 0) / sliced.length;
+      const cpus = sliced.reduce((prev, next) => prev + next.cpus.cpus, 0) / sliced.length;
+      const latency = sliced.reduce((prev, next) => prev + next.latency.avg, 0) / sliced.length;
+      const reqs = sliced.reduce((prev, next) => prev + next.reqs, 0) / sliced.length;
       const totalReqs = sliced.reduce((prev, next) => prev + next.reqs, 0);
-      const totalFailReqs = sliced.reduce(
-        (prev, next) => prev + next.failReqs,
-        0,
-      );
+      const totalFailReqs = sliced.reduce((prev, next) => prev + next.failReqs, 0);
       const maxReqs = Math.max(...sliced.map(({ reqs }) => reqs));
-      const maxLatency = Math.max(
-        ...sliced.map(({ latency }) => Math.max(...Object.values(latency))),
-      );
+      const maxLatency = Math.max(...sliced.map(({ latency }) => Math.max(...Object.values(latency))));
 
       return {
         ...newItem,

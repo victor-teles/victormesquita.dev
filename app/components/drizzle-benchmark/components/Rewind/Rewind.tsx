@@ -1,6 +1,6 @@
-import { type FC, useMemo, useRef } from "react";
+import { type FC, useMemo, useRef } from 'react';
 
-import styles from "./Rewind.module.css";
+import styles from './Rewind.module.css';
 
 interface Props {
   maxDataLength: number;
@@ -76,21 +76,12 @@ const Rewind: FC<Props> = ({ maxDataLength, time, rewind }) => {
 
   return (
     <div className={styles.wrap}>
-      <div
-        className={styles.tooltip}
-        style={{ left: `${350 / (100 / progress)}px` }}
-      >
+      <div className={styles.tooltip} style={{ left: `${350 / (100 / progress)}px` }}>
         {currentUsers} VUs
       </div>
       <div className={styles.rangeContainer}>
-        <div
-          className={styles["progress-line"]}
-          style={{ width: `${progress}%` }}
-        ></div>
-        <div
-          className={styles.rangeStep}
-          style={{ width: `${350 / (360 / 100)}px` }}
-        >
+        <div className={styles['progress-line']} style={{ width: `${progress}%` }}></div>
+        <div className={styles.rangeStep} style={{ width: `${350 / (360 / 100)}px` }}>
           0
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,10 +100,7 @@ const Rewind: FC<Props> = ({ maxDataLength, time, rewind }) => {
           </svg>
           1k
         </div>
-        <div
-          className={styles.rangeStep}
-          style={{ width: `${350 / (360 / 100)}px` }}
-        >
+        <div className={styles.rangeStep} style={{ width: `${350 / (360 / 100)}px` }}>
           1k
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -131,10 +119,7 @@ const Rewind: FC<Props> = ({ maxDataLength, time, rewind }) => {
           </svg>
           2k
         </div>
-        <div
-          className={styles.rangeStep}
-          style={{ width: `${350 / (360 / 105)}px` }}
-        >
+        <div className={styles.rangeStep} style={{ width: `${350 / (360 / 105)}px` }}>
           2k
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +141,7 @@ const Rewind: FC<Props> = ({ maxDataLength, time, rewind }) => {
         <div
           className={styles.rangeStep}
           style={{
-            borderRight: "1px solid transparent",
+            borderRight: '1px solid transparent',
             width: `${350 / (360 / 55)}px`,
           }}
         >
@@ -164,7 +149,7 @@ const Rewind: FC<Props> = ({ maxDataLength, time, rewind }) => {
         </div>
         <input
           ref={sliderRef}
-          className={styles["rewind-input"]}
+          className={styles['rewind-input']}
           type="range"
           min={0}
           max={maxDataLength * 100}

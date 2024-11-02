@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useEffect, useState } from 'react'
-import styles from './timer.module.css'
+import React from 'react';
+import { useEffect, useState } from 'react';
+import styles from './timer.module.css';
 
 const timeStringOptions: Intl.DateTimeFormatOptions[] = [
   {
@@ -70,41 +70,36 @@ const timeStringOptions: Intl.DateTimeFormatOptions[] = [
     timeZoneName: 'short',
     formatMatcher: 'best fit',
   },
-]
+];
 
 const TimeOfDay = () => {
-  const [format, setFormat] = useState(timeStringOptions[0])
+  const [format, setFormat] = useState(timeStringOptions[0]);
 
   const onClick = () => {
-    const nextFormat = timeStringOptions.indexOf(format) + 1
+    const nextFormat = timeStringOptions.indexOf(format) + 1;
     if (nextFormat >= timeStringOptions.length) {
-      setFormat(timeStringOptions[0])
+      setFormat(timeStringOptions[0]);
     } else {
-      setFormat(timeStringOptions[nextFormat])
+      setFormat(timeStringOptions[nextFormat]);
     }
-  }
+  };
 
   return (
-    <button
-      className={styles.button}
-      onClick={onClick}
-      type="button"
-      aria-label="Time of day"
-    >
+    <button className={styles.button} onClick={onClick} type="button" aria-label="Time of day">
       <MemoTimeDisplay format={format} />
     </button>
-  )
-}
+  );
+};
 
-export default TimeOfDay
+export default TimeOfDay;
 
 const TimeDisplay = ({ format }: { format: Intl.DateTimeFormatOptions }) => {
-  const [time, setTime] = useState(new Date())
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000)
-    return () => clearInterval(interval)
-  }, [])
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <span suppressHydrationWarning>
@@ -113,6 +108,6 @@ const TimeDisplay = ({ format }: { format: Intl.DateTimeFormatOptions }) => {
         ...format,
       })}
     </span>
-  )
-}
-const MemoTimeDisplay = React.memo(TimeDisplay)
+  );
+};
+const MemoTimeDisplay = React.memo(TimeDisplay);

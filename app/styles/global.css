@@ -1,5 +1,5 @@
-@import './syntax.css';
-@import './markdown.css';
+@import "./syntax.css";
+@import "./markdown.css";
 
 :root {
   /* Spacing */
@@ -15,10 +15,8 @@
   --header-height: 48px;
 
   /* Typography */
-  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Roboto',
-    'Helvetica Neue', sans-serif;
-  --font-mono: var(--font-geist-mono), 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo',
-    monospace;
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-geist-mono), "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
 
   /* Transitions */
   --transition: 0.1s ease-in-out;
@@ -51,7 +49,7 @@
   --fade-in: var(--timing) ease-in-out;
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   --bg: #fff;
   --bg-alpha: hsla(0, 0%, 100%, 0.9);
   --fg: #444;

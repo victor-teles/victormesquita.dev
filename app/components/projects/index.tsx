@@ -1,17 +1,17 @@
-import Link from '@components/link'
-import styles from './projects.module.css'
-import { Entry } from '@components/entry'
+import Link from '@components/link';
+import styles from './projects.module.css';
+import { Entry } from '@components/entry';
 
-import type { Project } from '@lib/types'
+import type { Project } from '@lib/types';
 
 type Props = {
-  projects: Project[]
-  showYears: boolean
+  projects: Project[];
+  showYears: boolean;
   seeMore: boolean;
-}
+};
 
 const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) => {
-  projects.sort((a, b) => Number.parseInt(b.years[0]) - Number.parseInt(a.years[0]))
+  projects.sort((a, b) => Number.parseInt(b.years[0]) - Number.parseInt(a.years[0]));
 
   return (
     <ul className={styles.container}>
@@ -21,13 +21,13 @@ const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) =
             showYears={showYears}
             years={e.years}
             key={e.title}
-            href={e.href || ""}
+            href={e.href || ''}
             title={e.title}
             description={e.description}
             role={e.role}
             stars={e.stars}
           />
-        )
+        );
       })}
       {seeMore && (
         <li>
@@ -35,7 +35,7 @@ const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) =
         </li>
       )}
     </ul>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

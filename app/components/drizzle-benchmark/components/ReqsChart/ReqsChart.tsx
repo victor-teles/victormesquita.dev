@@ -1,12 +1,12 @@
-import { type FC, useEffect, useMemo, useRef, useState } from "react";
+import { type FC, useEffect, useMemo, useRef, useState } from 'react';
 
-import styles from "./ReqsChart.module.css";
+import styles from './ReqsChart.module.css';
 
-import { CheckIcon, XIcon } from "../../Icons";
-import { SVGViewBoxHeight, SVGViewBoxWidth } from "../../constants";
-import type { IData } from "../../types";
-import fixedHelper from "../../utils/fixedHelper";
-import roundToThousand from "../../utils/roundToThousand";
+import { CheckIcon, XIcon } from '../../Icons';
+import { SVGViewBoxHeight, SVGViewBoxWidth } from '../../constants';
+import type { IData } from '../../types';
+import fixedHelper from '../../utils/fixedHelper';
+import roundToThousand from '../../utils/roundToThousand';
 
 interface IProps {
   setSelectedItemIndex: (index: number | null) => void;
@@ -53,30 +53,26 @@ const CustomBarChart: FC<IProps> = ({
     arr
       .map(
         (item, index) =>
-          `${(index * itemSize).toFixed(2)},${svgHeight},${(
-            index * itemSize
-          ).toFixed(2)},${(svgHeight - (svgHeight * item.reqs) / max).toFixed(
-            2,
-          )},${(index * itemSize + itemSize / 2).toFixed(2)},${(
-            svgHeight -
-            (svgHeight * item.reqs) / max
+          `${(index * itemSize).toFixed(2)},${svgHeight},${(index * itemSize).toFixed(2)},${(
+            svgHeight - (svgHeight * item.reqs) / max
+          ).toFixed(2)},${(index * itemSize + itemSize / 2).toFixed(2)},${(
+            svgHeight - (svgHeight * item.reqs) / max
           ).toFixed(2)},${(index * itemSize + itemSize / 2).toFixed(
             2,
           )},${svgHeight},${((index + 1) * itemSize).toFixed(2)},${svgHeight}`,
       )
-      .join(",");
+      .join(',');
 
   const getPolylines = (
     <g>
       <polyline
-        className={styles["bar-chart"]}
+        className={styles['bar-chart']}
         strokeWidth="2"
         strokeLinejoin="round"
         strokeLinecap="round"
-        points={`0 ${svgHeight} ${calculatePath(pathArray)} ${(
-          (pathArray.length - 1) *
-          itemSize
-        ).toFixed(2)} ${svgHeight}`}
+        points={`0 ${svgHeight} ${calculatePath(pathArray)} ${((pathArray.length - 1) * itemSize).toFixed(
+          2,
+        )} ${svgHeight}`}
       />
     </g>
   );
@@ -84,18 +80,13 @@ const CustomBarChart: FC<IProps> = ({
   const calculateRect = () =>
     pathArray.length > 0
       ? pathArray
-          .map(
-            () =>
-              `v-${svgHeight}h${(itemSize / 2).toFixed(2)}v${svgHeight}h${(
-                itemSize / 2
-              ).toFixed(2)}`,
-          )
-          .join("")
-      : "0";
+          .map(() => `v-${svgHeight}h${(itemSize / 2).toFixed(2)}v${svgHeight}h${(itemSize / 2).toFixed(2)}`)
+          .join('')
+      : '0';
 
   const generateRect = (
     <path
-      className={styles["bar-chart-empty"]}
+      className={styles['bar-chart-empty']}
       strokeWidth="2"
       strokeLinejoin="round"
       strokeLinecap="round"
@@ -124,11 +115,7 @@ const CustomBarChart: FC<IProps> = ({
   };
 
   useEffect(() => {
-    if (
-      selectedBarRef.current &&
-      svgGroupRef.current &&
-      selectedItemIndex !== null
-    ) {
+    if (selectedBarRef.current && svgGroupRef.current && selectedItemIndex !== null) {
       const { x } = selectedBarRef.current.getBoundingClientRect();
       const { y } = svgGroupRef.current.getBoundingClientRect();
       const { width } = statsRef.current.getBoundingClientRect();
@@ -154,68 +141,46 @@ const CustomBarChart: FC<IProps> = ({
     <div>
       <div className={styles.header}>
         {isCompleted ? (
-          <div className={styles.label}>
-            avg: {roundToThousand(avgRequests)} req/sec
-          </div>
+          <div className={styles.label}>avg: {roundToThousand(avgRequests)} req/sec</div>
         ) : selectedItemIndex === null ? (
-          <div className={styles.label}>
-            {roundToThousand(requests)} req/sec
-          </div>
+          <div className={styles.label}>{roundToThousand(requests)} req/sec</div>
         ) : (
           <div></div>
         )}
-        <div className={styles["info-wrap"]}>
+        <div className={styles['info-wrap']}>
           <div
-            className={
-              isCompleted && !!totalRequestsFail
-                ? styles["tooltip-wrap-underline"]
-                : styles["tooltip-wrap"]
-            }
+            className={isCompleted && !!totalRequestsFail ? styles['tooltip-wrap-underline'] : styles['tooltip-wrap']}
           >
             <div className={styles.tooltip}>Failed requests</div>
             {pathArray.length > 0 && isCompleted && !!totalRequestsFail && (
               <>
-                <div className={styles["success-icon-wrap"]}>
+                <div className={styles['success-icon-wrap']}>
                   <XIcon />
                 </div>
                 {roundToThousand(totalRequestsFail)}
               </>
             )}
           </div>
-          {pathArray.length > 0 && isCompleted && !!totalRequestsFail && " | "}
-          <div
-            className={
-              isCompleted && showTooltip
-                ? styles["tooltip-wrap-underline"]
-                : styles["tooltip-wrap"]
-            }
-          >
+          {pathArray.length > 0 && isCompleted && !!totalRequestsFail && ' | '}
+          <div className={isCompleted && showTooltip ? styles['tooltip-wrap-underline'] : styles['tooltip-wrap']}>
             <div className={styles.tooltip}>
-              Drizzle handled x
-              {fixedHelper(totalRequests / totalRequestsCompare, 2)} more
-              requests
+              Drizzle handled x{fixedHelper(totalRequests / totalRequestsCompare, 2)} more requests
             </div>
             {pathArray.length > 0 && isCompleted && showTooltip && (
               <>
-                <div className={styles["success-icon-wrap"]}>
+                <div className={styles['success-icon-wrap']}>
                   <CheckIcon />
                 </div>
                 x{fixedHelper(totalRequests / totalRequestsCompare, 2)}
               </>
             )}
           </div>
-          {pathArray.length > 0 && isCompleted && showTooltip && " | "}
+          {pathArray.length > 0 && isCompleted && showTooltip && ' | '}
           {roundToThousand(totalRequests)}
         </div>
       </div>
-      <div
-        className={styles["chart-wrap"]}
-        onMouseLeave={removeSelectedItemIndex}
-      >
-        <svg
-          viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`}
-          className="chart"
-        >
+      <div className={styles['chart-wrap']} onMouseLeave={removeSelectedItemIndex}>
+        <svg viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`} className="chart">
           <g ref={svgGroupRef} transform="translate(0,10)">
             <g>{generateRect}</g>
             {getPolylines}
@@ -223,25 +188,18 @@ const CustomBarChart: FC<IProps> = ({
               <g>
                 <rect
                   ref={selectedBarRef}
-                  className={styles["bar-chart-empty-hover"]}
+                  className={styles['bar-chart-empty-hover']}
                   width={itemSize / 2}
                   height={svgHeight}
                   x={selectedItemIndex * itemSize}
                   y={0}
                 />
                 <rect
-                  className={styles["selected-bar"]}
+                  className={styles['selected-bar']}
                   width={itemSize / 2}
                   x={selectedItemIndex * itemSize}
-                  y={
-                    svgHeight -
-                    (svgHeight * pathArray[selectedItemIndex].reqs) / max
-                  }
-                  height={
-                    svgHeight -
-                    (svgHeight -
-                      (svgHeight * pathArray[selectedItemIndex].reqs) / max)
-                  }
+                  y={svgHeight - (svgHeight * pathArray[selectedItemIndex].reqs) / max}
+                  height={svgHeight - (svgHeight - (svgHeight * pathArray[selectedItemIndex].reqs) / max)}
                 />
               </g>
             )}
@@ -252,7 +210,7 @@ const CustomBarChart: FC<IProps> = ({
               y2="0"
               fill="none"
               strokeWidth="1"
-              className={styles["bar-chart-axis"]}
+              className={styles['bar-chart-axis']}
               transform={`translate(0, ${svgHeight})`}
             />
             <g onMouseLeave={removeSelectedItemIndex}>{getRects}</g>

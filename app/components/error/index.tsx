@@ -1,22 +1,20 @@
-import PostsList from '@components/posts-list'
-import styles from './error.module.css'
+import PostsList from '@components/posts-list';
+import styles from './error.module.css';
 
-import { Post } from '@lib/types'
+import { Post } from '@lib/types';
 
 type Props = {
-  status: number
-  posts: Promise<Post[]>
-}
+  status: number;
+  posts: Promise<Post[]>;
+};
 
 const Error = async ({ status, posts: postsPromise }: Props) => {
-  const posts = await postsPromise
+  const posts = await postsPromise;
   return (
     <>
       {status === 404 ? (
         <section>
-          <h1 className={styles.first}>
-            Está talvez seja a página que você está procurando.
-          </h1>
+          <h1 className={styles.first}>Está talvez seja a página que você está procurando.</h1>
           <h2 className={styles.second}>Talvez alguma dessas 👇?</h2>
           <span className={styles.third}>
             <PostsList paginate={true} posts={posts} />
@@ -29,7 +27,7 @@ const Error = async ({ status, posts: postsPromise }: Props) => {
         </section>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Error
+export default Error;

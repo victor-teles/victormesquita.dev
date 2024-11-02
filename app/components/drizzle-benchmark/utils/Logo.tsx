@@ -1,16 +1,16 @@
-import { type FC } from "react";
-import DrizzleLogo from "../DrizzleLogo";
-import PrismaIcon from "../PrismaIcon";
+import { type FC } from 'react';
+import DrizzleLogo from '../DrizzleLogo';
+import PrismaIcon from '../PrismaIcon';
 
 interface Props {
   logo: string;
 }
 
 const Logo: FC<Props> = ({ logo }) => {
-  if (logo === "drizzle") {
+  if (logo === 'drizzle') {
     return <DrizzleLogo />;
   }
-  if (logo === "prisma") {
+  if (logo === 'prisma') {
     return <PrismaIcon />;
   }
   return null;

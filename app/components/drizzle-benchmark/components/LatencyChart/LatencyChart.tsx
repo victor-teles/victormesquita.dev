@@ -1,12 +1,12 @@
-import { type FC, useEffect, useMemo, useRef, useState } from "react";
+import { type FC, useEffect, useMemo, useRef, useState } from 'react';
 
-import { SVGViewBoxHeight, SVGViewBoxWidth } from "../../constants";
-import { CheckIcon } from "../../Icons";
-import type { IData } from "../../types";
-import fixedHelper from "../../utils/fixedHelper";
-import formatMs from "../../utils/formatMs";
+import { SVGViewBoxHeight, SVGViewBoxWidth } from '../../constants';
+import { CheckIcon } from '../../Icons';
+import type { IData } from '../../types';
+import fixedHelper from '../../utils/fixedHelper';
+import formatMs from '../../utils/formatMs';
 
-import styles from "./LatencyChart.module.css";
+import styles from './LatencyChart.module.css';
 
 interface IProps {
   setSelectedItemIndex: (index: number | null) => void;
@@ -45,27 +45,24 @@ const LatencyChart: FC<IProps> = ({
   const svgWidth = SVGViewBoxWidth;
   const statsRef = useRef<HTMLDivElement>(null!);
   const lineRef = useRef<SVGLineElement>(null!);
-  const params: Array<keyof IData["latency"]> = ["p95", "p90", "avg"];
+  const params: Array<keyof IData['latency']> = ['p95', 'p90', 'avg'];
   const itemSize = svgWidth / (maxDataLength - 1);
 
-  const calculatePath = (arr: IData[], param: keyof IData["latency"]) => {
-    if (arr.length === 0 || !max) return "";
+  const calculatePath = (arr: IData[], param: keyof IData['latency']) => {
+    if (arr.length === 0 || !max) return '';
     return arr
       .map(
         (item, index) =>
-          `${(index * itemSize).toFixed()},${(
-            svgHeight -
-            (svgHeight * +item.latency[param]) / max
-          ).toFixed()}`,
+          `${(index * itemSize).toFixed()},${(svgHeight - (svgHeight * +item.latency[param]) / max).toFixed()}`,
       )
-      .join(",");
+      .join(',');
   };
 
   const getLines = useMemo(
     () => (
       <>
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -74,7 +71,7 @@ const LatencyChart: FC<IProps> = ({
           strokeDasharray="12, 12"
         />
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -83,7 +80,7 @@ const LatencyChart: FC<IProps> = ({
           strokeDasharray="12, 12"
         />
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -91,30 +88,17 @@ const LatencyChart: FC<IProps> = ({
           y2={(svgHeight / 3) * 2}
           strokeDasharray="12, 12"
         />
-        <line
-          className={styles["dashed-line"]}
-          strokeWidth="1"
-          x1={0}
-          x2={svgWidth}
-          y1={svgHeight}
-          y2={svgHeight}
-        />
+        <line className={styles['dashed-line']} strokeWidth="1" x1={0} x2={svgWidth} y1={svgHeight} y2={svgHeight} />
       </>
     ),
     [],
   );
 
-  const calculateCirclePosition = (
-    arr: IData[],
-    param: keyof IData["latency"],
-  ) => {
+  const calculateCirclePosition = (arr: IData[], param: keyof IData['latency']) => {
     if (arr.length === 0 || !max) return {};
     return {
       cx: ((arr.length - 1) * itemSize).toFixed(),
-      cy: (
-        svgHeight -
-        (svgHeight * +arr[arr.length - 1].latency[param]) / max
-      ).toFixed(),
+      cy: (svgHeight - (svgHeight * +arr[arr.length - 1].latency[param]) / max).toFixed(),
     };
   };
 
@@ -188,10 +172,7 @@ const LatencyChart: FC<IProps> = ({
         r="3.5"
         data-screenshot-exclude="true"
         cx={selectedItemIndex * itemSize}
-        cy={
-          svgHeight -
-          (svgHeight * +pathArray[selectedItemIndex].latency[param]) / max
-        }
+        cy={svgHeight - (svgHeight * +pathArray[selectedItemIndex].latency[param]) / max}
       />
     ));
   };
@@ -222,70 +203,37 @@ const LatencyChart: FC<IProps> = ({
     <div>
       <div className={styles.header}>
         {isCompleted ? (
-          <div className={styles.label}>
-            avg latency: {formatMs(averageLatency)}
-          </div>
+          <div className={styles.label}>avg latency: {formatMs(averageLatency)}</div>
         ) : selectedItemIndex === null ? (
           <div className={styles.label}>avg latency: {formatMs(latency)}</div>
         ) : (
-          <div style={{ height: "12px" }}></div>
+          <div style={{ height: '12px' }}></div>
         )}
         {pathArray.length > 0 && isCompleted && showTooltip && (
-          <div className={styles["success-values"]}>
-            <div
-              className={
-                isCompleted && showTooltip
-                  ? styles["tooltip-wrap-underline"]
-                  : styles["tooltip-wrap"]
-              }
-            >
+          <div className={styles['success-values']}>
+            <div className={isCompleted && showTooltip ? styles['tooltip-wrap-underline'] : styles['tooltip-wrap']}>
               <div className={styles.tooltip}>
-                Drizzle has x
-                {fixedHelper(
-                  +averageLatencyCompare.toFixed() / +averageLatency.toFixed(),
-                  1,
-                )}{" "}
-                times better average latency
+                Drizzle has x{fixedHelper(+averageLatencyCompare.toFixed() / +averageLatency.toFixed(), 1)} times better
+                average latency
               </div>
-              <div className={styles["success-icon-wrap"]}>
+              <div className={styles['success-icon-wrap']}>
                 <CheckIcon />
               </div>
-              x
-              {fixedHelper(
-                +averageLatencyCompare.toFixed() / +averageLatency.toFixed(),
-                1,
-              )}
+              x{fixedHelper(+averageLatencyCompare.toFixed() / +averageLatency.toFixed(), 1)}
             </div>
             <span> | </span>
-            <div
-              className={
-                isCompleted && showTooltip
-                  ? styles["tooltip-wrap-underline"]
-                  : styles["tooltip-wrap"]
-              }
-            >
+            <div className={isCompleted && showTooltip ? styles['tooltip-wrap-underline'] : styles['tooltip-wrap']}>
               <div className={styles.tooltip}>
-                Drizzle has x
-                {fixedHelper(
-                  +averageP99Compare.toFixed() / +averageP99.toFixed(),
-                  1,
-                )}{" "}
-                times better p95 latency
+                Drizzle has x{fixedHelper(+averageP99Compare.toFixed() / +averageP99.toFixed(), 1)} times better p95
+                latency
               </div>
-              x
-              {fixedHelper(
-                +averageP99Compare.toFixed() / +averageP99.toFixed(),
-                1,
-              )}
+              x{fixedHelper(+averageP99Compare.toFixed() / +averageP99.toFixed(), 1)}
             </div>
           </div>
         )}
       </div>
-      <div className={styles["chart-wrap"]}>
-        <svg
-          viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`}
-          className="chart"
-        >
+      <div className={styles['chart-wrap']}>
+        <svg viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`} className="chart">
           <g transform="translate(0,10)" onMouseLeave={removeSelectedItemIndex}>
             {getLines}
             {getPolylines}
@@ -294,7 +242,7 @@ const LatencyChart: FC<IProps> = ({
             {selectedItemIndex !== null && (
               <line
                 ref={lineRef}
-                className={styles["selected-line"]}
+                className={styles['selected-line']}
                 stroke="#000000"
                 strokeWidth="1"
                 x1={selectedItemIndex * itemSize}
@@ -315,26 +263,20 @@ const LatencyChart: FC<IProps> = ({
               top: tipPosition.y,
             }}
           >
-            <div className={styles["stats-item"]}>
-              <div className={`${styles.circle} ${styles["stats-avg"]}`} />
+            <div className={styles['stats-item']}>
+              <div className={`${styles.circle} ${styles['stats-avg']}`} />
               avg:
-              <div className={styles["accent-text"]}>
-                {formatMs(pathArray[selectedItemIndex].latency.avg)}
-              </div>
+              <div className={styles['accent-text']}>{formatMs(pathArray[selectedItemIndex].latency.avg)}</div>
             </div>
-            <div className={styles["stats-item"]}>
-              <div className={`${styles.circle} ${styles["stats-p90"]}`} />
+            <div className={styles['stats-item']}>
+              <div className={`${styles.circle} ${styles['stats-p90']}`} />
               p90:
-              <div className={styles["accent-text"]}>
-                {formatMs(pathArray[selectedItemIndex].latency.p90)}
-              </div>
+              <div className={styles['accent-text']}>{formatMs(pathArray[selectedItemIndex].latency.p90)}</div>
             </div>
-            <div className={styles["stats-item"]}>
-              <div className={`${styles.circle} ${styles["stats-p95"]}`} />
+            <div className={styles['stats-item']}>
+              <div className={`${styles.circle} ${styles['stats-p95']}`} />
               p95:
-              <div className={styles["accent-text"]}>
-                {formatMs(pathArray[selectedItemIndex].latency.p95)}
-              </div>
+              <div className={styles['accent-text']}>{formatMs(pathArray[selectedItemIndex].latency.p95)}</div>
             </div>
           </div>
         )}

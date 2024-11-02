@@ -2,7 +2,7 @@
   font-size: 12px;
 }
 
-html[class~=dark] .main-info {
+html[class~="dark"] .main-info {
   color: #f0f0f0;
 }
 
@@ -12,7 +12,7 @@ html[class~=dark] .main-info {
   color: #222222;
 }
 
-html[class~=dark] .additional-info {
+html[class~="dark"] .additional-info {
   color: #c0c0c0;
 }
 

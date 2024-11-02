@@ -1,7 +1,7 @@
-import Link from '@components/link'
-import { Note, Post, Review } from '@lib/types'
+import Link from '@components/link';
+import { Note, Post, Review } from '@lib/types';
 
-import styles from './navigation.module.css'
+import styles from './navigation.module.css';
 
 const Navigation = ({ previous, next }: { previous?: Note | Post | Review; next?: Note | Post | Review }) => {
   return (
@@ -24,7 +24,7 @@ const Navigation = ({ previous, next }: { previous?: Note | Post | Review; next?
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

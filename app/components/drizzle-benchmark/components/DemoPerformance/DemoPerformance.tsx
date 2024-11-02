@@ -1,15 +1,15 @@
-import { useState, type FC, useEffect } from "react";
+import { useState, type FC, useEffect } from 'react';
 
-import styles from "./DemoPerformance.module.css";
+import styles from './DemoPerformance.module.css';
 
-import type { IData } from "../../types";
-import LatencyChart from "../LatencyChart/LatencyChart";
-import ReqsChart from "../ReqsChart/ReqsChart";
-import CPUChart from "../CpuChart/CPUChart";
-import Logo from "../../utils/Logo";
-import configurationData from "../../configurationData";
-import RuntimeSelector from "../RuntimeSelector/RuntimeSelector";
-import JoinsSelector from "../JoinsSelector/JoinsSelector";
+import type { IData } from '../../types';
+import LatencyChart from '../LatencyChart/LatencyChart';
+import ReqsChart from '../ReqsChart/ReqsChart';
+import CPUChart from '../CpuChart/CPUChart';
+import Logo from '../../utils/Logo';
+import configurationData from '../../configurationData';
+import RuntimeSelector from '../RuntimeSelector/RuntimeSelector';
+import JoinsSelector from '../JoinsSelector/JoinsSelector';
 
 interface Props {
   data: IData[] | null;
@@ -18,62 +18,45 @@ interface Props {
   maxElements: number;
 }
 
-const DemoPerformance: FC<Props> = ({
-  data,
-  compareData,
-  maxDataLength,
-  maxElements,
-}) => {
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
-    null,
-  );
+const DemoPerformance: FC<Props> = ({ data, compareData, maxDataLength, maxElements }) => {
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
   const [max, setMax] = useState<number>(1);
   const [maxRequests, setMaxRequests] = useState<number>(1);
 
   useEffect(() => {
     if (!data || !compareData) return;
 
-    const maxLatency = Math.max(
-      data[maxDataLength].max.latency,
-      compareData[maxDataLength].max.latency,
-    );
+    const maxLatency = Math.max(data[maxDataLength].max.latency, compareData[maxDataLength].max.latency);
     setMax(maxLatency);
-    const maxRequestsTemp = Math.max(
-      data[maxDataLength].max.reqs,
-      compareData[maxDataLength].max.reqs,
-    );
+    const maxRequestsTemp = Math.max(data[maxDataLength].max.reqs, compareData[maxDataLength].max.reqs);
     setMaxRequests(maxRequestsTemp);
   }, [data, compareData]);
 
   return (
     <div className={styles.wrap}>
-      <div className={styles["compare-item-container"]}>
-        <div className={styles["compare-item"]}>
-          <div className={styles["compare-icon-wrap"]}>
+      <div className={styles['compare-item-container']}>
+        <div className={styles['compare-item']}>
+          <div className={styles['compare-icon-wrap']}>
             <Logo logo="drizzle" />
           </div>
           <div>
             <div className={styles.name}>Drizzle</div>
-            <div className={styles.version}>
-              {configurationData.orm.items["prisma"].drizzle_version}
-            </div>
+            <div className={styles.version}>{configurationData.orm.items['prisma'].drizzle_version}</div>
           </div>
         </div>
         <RuntimeSelector />
       </div>
-      <div className={styles["compare-item-container"]}>
-        <div className={styles["compare-item"]}>
-          <div className={styles["compare-icon-wrap"]}>
+      <div className={styles['compare-item-container']}>
+        <div className={styles['compare-item']}>
+          <div className={styles['compare-icon-wrap']}>
             <Logo logo="prisma" />
           </div>
           <div>
             <div className={styles.name}>Prisma</div>
-            <div className={styles.version}>
-              {configurationData.orm.items["prisma"].compare_version}
-            </div>
+            <div className={styles.version}>{configurationData.orm.items['prisma'].compare_version}</div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: 'flex', gap: '12px' }}>
           <RuntimeSelector />
           <JoinsSelector />
         </div>
@@ -86,13 +69,9 @@ const DemoPerformance: FC<Props> = ({
           max={max}
           maxDataLength={maxElements}
           averageLatency={data ? data[maxDataLength].avg.latency : 0}
-          averageLatencyCompare={
-            compareData ? compareData[maxDataLength].avg.latency : 0
-          }
+          averageLatencyCompare={compareData ? compareData[maxDataLength].avg.latency : 0}
           averageP99={data ? data[maxDataLength].avg.p95 : 0}
-          averageP99Compare={
-            compareData ? compareData[maxDataLength].avg.p95 : 0
-          }
+          averageP99Compare={compareData ? compareData[maxDataLength].avg.p95 : 0}
           isCompleted={true}
           latency={data ? data[maxDataLength].latency.avg : 0}
         />
@@ -101,17 +80,10 @@ const DemoPerformance: FC<Props> = ({
         <LatencyChart
           setSelectedItemIndex={setSelectedItemIndex}
           selectedItemIndex={selectedItemIndex}
-          pathArray={
-            compareData?.slice(
-              compareData?.length - 82,
-              compareData?.length - 1,
-            ) || []
-          }
+          pathArray={compareData?.slice(compareData?.length - 82, compareData?.length - 1) || []}
           max={max}
           maxDataLength={maxElements}
-          averageLatency={
-            compareData ? compareData[maxDataLength].avg.latency : 0
-          }
+          averageLatency={compareData ? compareData[maxDataLength].avg.latency : 0}
           averageLatencyCompare={data ? data[maxDataLength].avg.latency : 0}
           averageP99={compareData ? compareData[maxDataLength].avg.p95 : 0}
           averageP99Compare={data ? data[maxDataLength].avg.p95 : 0}
@@ -124,9 +96,7 @@ const DemoPerformance: FC<Props> = ({
           avgRequests={data ? data[maxDataLength].avg.reqs : 0}
           requests={data ? data[maxDataLength].reqs : 0}
           totalRequests={data ? data[maxDataLength].totalReqs : 0}
-          totalRequestsCompare={
-            compareData ? compareData[maxDataLength].totalReqs : 0
-          }
+          totalRequestsCompare={compareData ? compareData[maxDataLength].totalReqs : 0}
           setSelectedItemIndex={setSelectedItemIndex}
           selectedItemIndex={selectedItemIndex}
           pathArray={data?.slice(data?.length - 81, data?.length) || []}
@@ -144,18 +114,11 @@ const DemoPerformance: FC<Props> = ({
           totalRequestsCompare={data ? data[maxDataLength].totalReqs : 0}
           setSelectedItemIndex={setSelectedItemIndex}
           selectedItemIndex={selectedItemIndex}
-          pathArray={
-            compareData?.slice(
-              compareData?.length - 82,
-              compareData?.length - 1,
-            ) || []
-          }
+          pathArray={compareData?.slice(compareData?.length - 82, compareData?.length - 1) || []}
           maxDataLength={maxElements}
           max={maxRequests}
           isCompleted={true}
-          totalRequestsFail={
-            compareData ? compareData[maxDataLength].totalFailReqs : 0
-          }
+          totalRequestsFail={compareData ? compareData[maxDataLength].totalFailReqs : 0}
         />
       </div>
       <div className={styles.block}>
@@ -175,12 +138,7 @@ const DemoPerformance: FC<Props> = ({
         <CPUChart
           setSelectedItemIndex={setSelectedItemIndex}
           selectedItemIndex={selectedItemIndex}
-          pathArray={
-            compareData?.slice(
-              compareData?.length - 82,
-              compareData?.length - 1,
-            ) || []
-          }
+          pathArray={compareData?.slice(compareData?.length - 82, compareData?.length - 1) || []}
           max={100}
           maxDataLength={maxElements}
           average={compareData ? compareData[maxDataLength].avg.cpus : 0}

@@ -1,25 +1,22 @@
-import styles from './button.module.css'
-import { forwardRef } from 'react'
-import clsx from 'clsx'
-import { Spinner } from '@components/spinner'
+import styles from './button.module.css';
+import { forwardRef } from 'react';
+import clsx from 'clsx';
+import { Spinner } from '@components/spinner';
 
-type Props = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
-  children?: React.ReactNode
-  buttonType?: 'primary' | 'secondary'
-  className?: string
+type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
+  children?: React.ReactNode;
+  buttonType?: 'primary' | 'secondary';
+  className?: string;
   // eslint-disable-next-line no-unused-vars
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  iconRight?: React.ReactNode
-  iconLeft?: React.ReactNode
-  height?: string | number
-  width?: string | number
-  padding?: string | number
-  margin?: string | number
-  loading?: boolean
-}
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  iconRight?: React.ReactNode;
+  iconLeft?: React.ReactNode;
+  height?: string | number;
+  width?: string | number;
+  padding?: string | number;
+  margin?: string | number;
+  loading?: boolean;
+};
 
 // eslint-disable-next-line react/display-name
 const Button = forwardRef<HTMLButtonElement, Props>(
@@ -40,7 +37,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <button
@@ -54,15 +51,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         style={{ height, width, margin, padding, ...style }}
         {...props}
       >
-        {children && iconLeft && (
-          <span className={clsx(styles.icon, styles.iconLeft)}>{iconLeft}</span>
-        )}
-        {!loading &&
-          (children ? (
-            children
-          ) : (
-            <span className={styles.icon}>{iconLeft || iconRight}</span>
-          ))}
+        {children && iconLeft && <span className={clsx(styles.icon, styles.iconLeft)}>{iconLeft}</span>}
+        {!loading && (children ? children : <span className={styles.icon}>{iconLeft || iconRight}</span>)}
         {loading && (
           <span
             style={{
@@ -74,14 +64,10 @@ const Button = forwardRef<HTMLButtonElement, Props>(
             <Spinner />
           </span>
         )}
-        {children && iconRight && (
-          <span className={clsx(styles.icon, styles.iconRight)}>
-            {iconRight}
-          </span>
-        )}
+        {children && iconRight && <span className={clsx(styles.icon, styles.iconRight)}>{iconRight}</span>}
       </button>
-    )
-  }
-)
+    );
+  },
+);
 
-export default Button
+export default Button;

@@ -1,11 +1,11 @@
-import { type FC, useState, useRef, useEffect, useMemo } from "react";
+import { type FC, useState, useRef, useEffect, useMemo } from 'react';
 
-import { CheckIcon } from "../../Icons";
-import { SVGViewBoxHeight, SVGViewBoxWidth } from "../../constants";
-import { type IData } from "../../types";
-import fixedHelper from "../../utils/fixedHelper";
+import { CheckIcon } from '../../Icons';
+import { SVGViewBoxHeight, SVGViewBoxWidth } from '../../constants';
+import { type IData } from '../../types';
+import fixedHelper from '../../utils/fixedHelper';
 
-import styles from "./CPUChart.module.css";
+import styles from './CPUChart.module.css';
 
 interface IProps {
   setSelectedItemIndex: (index: number | null) => void;
@@ -43,7 +43,7 @@ const CPUChart: FC<IProps> = ({
   const itemSize = svgWidth / (maxDataLength - 1);
 
   const formatCpu = (cpu?: number) => {
-    if (!cpu && cpu !== 0) return "0";
+    if (!cpu && cpu !== 0) return '0';
     if (cpu < 100) {
       return cpu.toFixed(1);
     }
@@ -54,18 +54,15 @@ const CPUChart: FC<IProps> = ({
     arr
       .map(
         (item, index) =>
-          `${(index * itemSize).toFixed()},${(
-            svgHeight -
-            (svgHeight * item.cpus.cpus) / max
-          ).toFixed()}`,
+          `${(index * itemSize).toFixed()},${(svgHeight - (svgHeight * item.cpus.cpus) / max).toFixed()}`,
       )
-      .join(",");
+      .join(',');
 
   const getLines = useMemo(
     () => (
       <>
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -74,7 +71,7 @@ const CPUChart: FC<IProps> = ({
           strokeDasharray="12, 12"
         />
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -83,7 +80,7 @@ const CPUChart: FC<IProps> = ({
           strokeDasharray="12, 12"
         />
         <line
-          className={styles["dashed-line"]}
+          className={styles['dashed-line']}
           strokeWidth="1"
           x1={0}
           x2={svgWidth}
@@ -91,14 +88,7 @@ const CPUChart: FC<IProps> = ({
           y2={(svgHeight / 3) * 2}
           strokeDasharray="12, 12"
         />
-        <line
-          className={styles["dashed-line"]}
-          strokeWidth="1"
-          x1={0}
-          x2={svgWidth}
-          y1={svgHeight}
-          y2={svgHeight}
-        />
+        <line className={styles['dashed-line']} strokeWidth="1" x1={0} x2={svgWidth} y1={svgHeight} y2={svgHeight} />
       </>
     ),
     [],
@@ -108,10 +98,7 @@ const CPUChart: FC<IProps> = ({
     if (arr.length === 0) return {};
     return {
       cx: ((arr.length - 1) * itemSize).toFixed(2),
-      cy: (
-        svgHeight -
-        (svgHeight * arr[arr.length - 1].cpus.cpus) / max
-      ).toFixed(),
+      cy: (svgHeight - (svgHeight * arr[arr.length - 1].cpus.cpus) / max).toFixed(),
     };
   };
 
@@ -145,8 +132,7 @@ const CPUChart: FC<IProps> = ({
           strokeLinejoin="round"
           strokeLinecap="round"
           points={`0 ${svgHeight} ${calculatePath(pathArray)} ${(
-            (pathArray.length - 1) *
-            itemSize
+            (pathArray.length - 1) * itemSize
           ).toFixed()} ${svgHeight}`}
         />
       </g>
@@ -183,9 +169,7 @@ const CPUChart: FC<IProps> = ({
         r="3.5"
         data-screenshot-exclude="true"
         cx={selectedItemIndex * itemSize}
-        cy={
-          svgHeight - (svgHeight * pathArray[selectedItemIndex].cpus.cpus) / max
-        }
+        cy={svgHeight - (svgHeight * pathArray[selectedItemIndex].cpus.cpus) / max}
       />
     );
   };
@@ -222,57 +206,28 @@ const CPUChart: FC<IProps> = ({
     <div>
       <div className={styles.header}>
         {isCompleted ? (
-          <div className={styles.label}>
-            avg CPU load: {formatCpu(average)}%
-          </div>
+          <div className={styles.label}>avg CPU load: {formatCpu(average)}%</div>
         ) : selectedItemIndex === null ? (
-          <div className={styles.label}>
-            CPU load: {formatCpu(currentLoad)}%
-          </div>
+          <div className={styles.label}>CPU load: {formatCpu(currentLoad)}%</div>
         ) : (
-          <div style={{ height: "12px" }}></div>
+          <div style={{ height: '12px' }}></div>
         )}
         {pathArray.length > 0 && isCompleted && showTooltip && (
-          <div
-            className={
-              isCompleted && showTooltip
-                ? styles["tooltip-wrap-underline"]
-                : styles["tooltip-wrap"]
-            }
-          >
-            <div className={styles.tooltip}>
-              Drizzle has x{xTimes()} lower cpu usage
-            </div>
-            <div className={styles["success-icon-wrap"]}>
+          <div className={isCompleted && showTooltip ? styles['tooltip-wrap-underline'] : styles['tooltip-wrap']}>
+            <div className={styles.tooltip}>Drizzle has x{xTimes()} lower cpu usage</div>
+            <div className={styles['success-icon-wrap']}>
               <CheckIcon />
             </div>
             x{xTimes()}
           </div>
         )}
       </div>
-      <div className={styles["chart-wrap"]}>
-        <svg
-          viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`}
-          className="chart"
-        >
+      <div className={styles['chart-wrap']}>
+        <svg viewBox={`0 0 ${svgWidth + 7} ${svgHeight + 15}`} className="chart">
           <defs>
-            <linearGradient
-              id="linegraph-blue-gradient"
-              x1="0"
-              x2="0"
-              y1="0"
-              y2="1"
-            >
-              <stop
-                className={styles["color-stop-polygon"]}
-                offset="0%"
-                stopOpacity="0.85"
-              />
-              <stop
-                className={styles["color-stop-polygon"]}
-                offset="90%"
-                stopOpacity="0.1"
-              />
+            <linearGradient id="linegraph-blue-gradient" x1="0" x2="0" y1="0" y2="1">
+              <stop className={styles['color-stop-polygon']} offset="0%" stopOpacity="0.85" />
+              <stop className={styles['color-stop-polygon']} offset="90%" stopOpacity="0.1" />
             </linearGradient>
           </defs>
           <g transform="translate(0,10)" onMouseLeave={removeSelectedItemIndex}>
@@ -283,7 +238,7 @@ const CPUChart: FC<IProps> = ({
             {selectedItemIndex !== null && (
               <line
                 ref={lineRef}
-                className={styles["selected-line"]}
+                className={styles['selected-line']}
                 strokeWidth="1"
                 x1={selectedItemIndex * itemSize}
                 x2={selectedItemIndex * itemSize}
@@ -303,21 +258,13 @@ const CPUChart: FC<IProps> = ({
               left: tipPosition.x,
             }}
           >
-            <div className={styles["stats-item"]}>
+            <div className={styles['stats-item']}>
               CPUs:
-              <div className={styles["accent-text"]}>
-                <span>
-                  {formatCpu(pathArray[selectedItemIndex].cpus.cpu1)}%{" "}
-                </span>
-                <span>
-                  {formatCpu(pathArray[selectedItemIndex].cpus.cpu2)}%{" "}
-                </span>
-                <span>
-                  {formatCpu(pathArray[selectedItemIndex].cpus.cpu3)}%{" "}
-                </span>
-                <span>
-                  {formatCpu(pathArray[selectedItemIndex].cpus.cpu4)}%{" "}
-                </span>
+              <div className={styles['accent-text']}>
+                <span>{formatCpu(pathArray[selectedItemIndex].cpus.cpu1)}% </span>
+                <span>{formatCpu(pathArray[selectedItemIndex].cpus.cpu2)}% </span>
+                <span>{formatCpu(pathArray[selectedItemIndex].cpus.cpu3)}% </span>
+                <span>{formatCpu(pathArray[selectedItemIndex].cpus.cpu4)}% </span>
               </div>
             </div>
           </div>

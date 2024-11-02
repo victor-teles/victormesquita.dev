@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import Button from '@components/button'
+import Button from '@components/button';
 
 export default function ErrorPage({
   error,
   reset,
 }: {
-  error: Error
-  reset: () => void
+  error: Error;
+  reset: () => void;
 }) {
   return (
     <article>
@@ -18,5 +18,5 @@ export default function ErrorPage({
 
       <pre>{error.message}</pre>
     </article>
-  )
+  );
 }

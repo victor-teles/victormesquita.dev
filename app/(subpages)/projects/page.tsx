@@ -1,5 +1,5 @@
-import ProjectList from '@components/projects'
-import { getProjects } from '@lib/projects'
+import ProjectList from '@components/projects';
+import { getProjects } from '@lib/projects';
 
 export const metadata = {
   title: 'Projects',
@@ -7,13 +7,11 @@ export const metadata = {
   alternates: {
     canonical: 'https://victormesquita.dev/projects',
   },
-}
+};
 
 const Projects = async () => {
-  const projects = await getProjects()
-  return (
-    <ProjectList showYears={true} projects={projects} seeMore={false} />
-  )
-}
+  const projects = await getProjects();
+  return <ProjectList showYears={true} projects={projects} seeMore={false} />;
+};
 
-export default Projects
+export default Projects;

@@ -1,24 +1,24 @@
-import { ReactNode, useState } from 'react'
-import styles from './hovercard.module.css'
+import { ReactNode, useState } from 'react';
+import styles from './hovercard.module.css';
 
 const Hovercard = ({
   children,
   card,
   ...otherProps
 }: {
-  card: ReactNode
-  children: ReactNode | ReactNode[]
+  card: ReactNode;
+  children: ReactNode | ReactNode[];
 }) => {
-  const [isHovering, setIsHovering] = useState(false)
+  const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
-    setIsHovering(true)
-  }
+    setIsHovering(true);
+  };
 
   const handleMouseOut = () => {
     setTimeout(() => {
-      setIsHovering(false)
-    }, 1000)
-  }
+      setIsHovering(false);
+    }, 1000);
+  };
 
   return (
     <div
@@ -36,7 +36,7 @@ const Hovercard = ({
       )}
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Hovercard
+export default Hovercard;

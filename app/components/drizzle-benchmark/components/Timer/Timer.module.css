@@ -1,4 +1,4 @@
-html[class~=dark] .wrap {
+html[class~="dark"] .wrap {
   color: #f0f0f0;
 }
 
@@ -6,15 +6,7 @@ html[class~=dark] .wrap {
   color: #222222;
   display: flex;
   align-items: center;
-  font-family: 
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    Liberation Mono,
-    Courier New,
-    monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   font-size: 14px;
   height: 20px;
 }

@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
-import BlockEntry from '@components/entry/block'
-import styles from './posts-list.module.css'
-import type { Post } from '@lib/types'
+import BlockEntry from '@components/entry/block';
+import styles from './posts-list.module.css';
+import type { Post } from '@lib/types';
 
 type Props =
   | {
-    posts: Post[]
-    paginate?: boolean
-  }
+      posts: Post[];
+      paginate?: boolean;
+    }
   | {
-    skeleton: true
-  }
+      skeleton: true;
+    };
 
 const Posts = (props: Props) => {
-  const [showMore, setShowMore] = useState(4)
+  const [showMore, setShowMore] = useState(4);
 
   if ('skeleton' in props) {
     return (
@@ -25,10 +25,10 @@ const Posts = (props: Props) => {
           <BlockEntry key={i} skeleton />
         ))}
       </ul>
-    )
+    );
   }
 
-  const { posts, paginate } = props
+  const { posts, paginate } = props;
 
   return (
     <ul className={styles.container}>
@@ -37,7 +37,7 @@ const Posts = (props: Props) => {
           month: 'numeric',
           day: 'numeric',
           year: 'numeric',
-        })
+        });
 
         return (
           <BlockEntry
@@ -49,12 +49,12 @@ const Posts = (props: Props) => {
             views={post.views}
             isThirdParty={post.isThirdParty}
           />
-        )
+        );
       })}
       {paginate && showMore < posts.length && (
         <button
           onClick={() => {
-            setShowMore(showMore + 4)
+            setShowMore(showMore + 4);
           }}
           className={styles.button}
         >
@@ -62,7 +62,7 @@ const Posts = (props: Props) => {
         </button>
       )}
     </ul>
-  )
-}
+  );
+};
 
-export default Posts
+export default Posts;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 type Feature =
   | 'any-hover'
@@ -27,37 +27,37 @@ type Feature =
   | 'resolution'
   | 'scripting'
   | 'update'
-  | 'width'
+  | 'width';
 
 type Options = {
-  feature: Feature
-  value: string | number
-}
+  feature: Feature;
+  value: string | number;
+};
 
 const useMediaQuery = ({ feature, value }: Options) => {
-  const [matches, setMatches] = useState(false)
+  const [matches, setMatches] = useState(false);
 
-  const query = `(${feature}: ${value})`
+  const query = `(${feature}: ${value})`;
 
   useEffect(() => {
     if (typeof window === 'undefined') {
-      return
+      return;
     }
-    const media = window.matchMedia(query)
+    const media = window.matchMedia(query);
     if (media.matches !== matches) {
-      setMatches(media.matches)
+      setMatches(media.matches);
     }
-    const listener = () => setMatches(media.matches)
-    window.addEventListener('resize', listener)
-    return () => window.removeEventListener('resize', listener)
-  }, [matches, query])
-  return matches
-}
+    const listener = () => setMatches(media.matches);
+    window.addEventListener('resize', listener);
+    return () => window.removeEventListener('resize', listener);
+  }, [matches, query]);
+  return matches;
+};
 
 const useReducedMotion = () => {
-  return useMediaQuery({ feature: 'prefers-reduced-motion', value: 'reduce' })
-}
+  return useMediaQuery({ feature: 'prefers-reduced-motion', value: 'reduce' });
+};
 
-export { useReducedMotion }
+export { useReducedMotion };
 
-export default useMediaQuery
+export default useMediaQuery;

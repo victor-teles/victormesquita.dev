@@ -1,13 +1,13 @@
 type Props = {
-  title: string
-  description: string
-  image?: string
-  hidden?: boolean
-  date?: string
-  lastModified?: string
-  author?: string
-  path: `/${string}`
-}
+  title: string;
+  description: string;
+  image?: string;
+  hidden?: boolean;
+  date?: string;
+  lastModified?: string;
+  author?: string;
+  path: `/${string}`;
+};
 
 export function getMetadata({
   title,
@@ -23,16 +23,12 @@ export function getMetadata({
     process.env.NODE_ENV === 'production'
       ? 'https://victormesquita.dev'
       : process.env.NEXT_PUBLIC_VERCEL_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'http://localhost:3000'
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        : 'http://localhost:3000';
 
   return (
     <>
-      {title.indexOf('Victor Mesquita') > -1 ? (
-        <title>{title}</title>
-      ) : (
-        <title>{`${title} - ${author}`}</title>
-      )}
+      {title.indexOf('Victor Mesquita') > -1 ? <title>{title}</title> : <title>{`${title} - ${author}`}</title>}
       <meta name="og:title" content={title} />
 
       {/* Description */}
@@ -59,31 +55,17 @@ export function getMetadata({
       <meta property="og:locale" content="en" />
 
       {/* RSS feed */}
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title="RSS Feed for victormesquita.dev"
-        href="/feed.xml"
-      />
+      <link rel="alternate" type="application/rss+xml" title="RSS Feed for victormesquita.dev" href="/feed.xml" />
 
       {/* Favicons */}
       <link rel="manifest" href="/favicons/manifest.json" />
       <meta name="theme-color" content="#000000" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicons/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/svg+xml"
-        href="/favicons/favicon-32x32.png"
-        key="dynamic-favicon"
-      />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+      <link rel="icon" type="image/svg+xml" href="/favicons/favicon-32x32.png" key="dynamic-favicon" />
 
       {date && <meta name="date" content={date} />}
       {lastModified && <meta name="last-modified" content={lastModified} />}
       {hidden && <meta name="robots" content="noindex" />}
     </>
-  )
+  );
 }

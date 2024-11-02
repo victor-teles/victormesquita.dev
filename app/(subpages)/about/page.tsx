@@ -1,4 +1,4 @@
-import Link from '@components/link'
+import Link from '@components/link';
 
 export const metadata = {
   title: 'Sobre',
@@ -6,17 +6,17 @@ export const metadata = {
   alternates: {
     canonical: 'https://victormesquita.dev/about',
   },
-}
+};
 
 const About = () => {
   return (
     <article>
       <p>
-        Este site foi feito {' '} pelo Max Leiter e modificado por mim {' '} usando {' '}
+        Este site foi feito pelo Max Leiter e modificado por mim usando{' '}
         <Link external href="https://nextjs.com">
           Next.js 15
         </Link>{' '}
-         e é hospedado via{' '}
+        e é hospedado via{' '}
         <Link external href="https://vercel.com/home">
           Vercel
         </Link>
@@ -31,7 +31,7 @@ const About = () => {
         .
       </p>
     </article>
-  )
-}
+  );
+};
 
-export default About
+export default About;

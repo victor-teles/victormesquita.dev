@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { BenchmarkProvider } from "./context/useBenchmarkContext";
-import ControlPanel from "./components/ControlPanel/ControlPanel";
-import styles from "./MdxBenchmark.module.css";
+import { BenchmarkProvider } from './context/useBenchmarkContext';
+import ControlPanel from './components/ControlPanel/ControlPanel';
+import styles from './MdxBenchmark.module.css';
 
 const MDXBenchmark = () => {
   return (
     <BenchmarkProvider>
-      <div className={styles["mdx-benchmark__wrap"]}>
+      <div className={styles['mdx-benchmark__wrap']}>
         <ControlPanel minWidth={1190} />
         <div className={styles.bottom}>
           <a

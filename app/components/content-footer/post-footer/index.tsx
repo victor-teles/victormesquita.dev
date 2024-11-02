@@ -1,11 +1,11 @@
-import Link from '@components/link'
-import React from 'react'
-import styles from './footer.module.css'
+import Link from '@components/link';
+import React from 'react';
+import styles from './footer.module.css';
 
 const PostFooter = () => {
   return (
     <>
-      <hr style={{ margin: 0 }}/>
+      <hr style={{ margin: 0 }} />
       <footer className={styles.footer}>
         <p>
           Thanks for reading! If you want to see future content, you can follow me{' '}
@@ -17,7 +17,7 @@ const PostFooter = () => {
         </p>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default PostFooter
+export default PostFooter;

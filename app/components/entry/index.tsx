@@ -1,27 +1,19 @@
-import Badge from '@components/badge'
-import { Star } from '@components/icons'
-import Link from '@components/link'
-import styles from './entry.module.css'
+import Badge from '@components/badge';
+import { Star } from '@components/icons';
+import Link from '@components/link';
+import styles from './entry.module.css';
 
 type Props = {
-  href: string
-  title: string
-  description: string
-  role: string
-  years: string[]
-  showYears: boolean
-  stars?: number
-}
+  href: string;
+  title: string;
+  description: string;
+  role: string;
+  years: string[];
+  showYears: boolean;
+  stars?: number;
+};
 
-export const Entry = ({
-  href,
-  title,
-  description,
-  role,
-  years,
-  showYears = true,
-  stars,
-}: Props) => (
+export const Entry = ({ href, title, description, role, years, showYears = true, stars }: Props) => (
   <li className={styles.wrapper}>
     <div className={styles.split}>
       <h4 className={styles.title}>
@@ -55,4 +47,4 @@ export const Entry = ({
     </div>
     <div>{description}</div>
   </li>
-)
+);

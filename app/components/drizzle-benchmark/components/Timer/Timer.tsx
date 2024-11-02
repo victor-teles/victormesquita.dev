@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import styles from "./Timer.module.css";
+import type { FC } from 'react';
+import styles from './Timer.module.css';
 
 interface IProps {
   time: number;
@@ -12,9 +12,8 @@ const Timer: FC<IProps> = ({ time }) => {
 
   return (
     <div className={styles.wrap}>
-      {minutes.toString().padStart(2, "0")}:
-      {seconds.toString().padStart(2, "0")}:
-      {milliseconds.toString().padStart(2, "0")}
+      {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}:
+      {milliseconds.toString().padStart(2, '0')}
     </div>
   );
 };

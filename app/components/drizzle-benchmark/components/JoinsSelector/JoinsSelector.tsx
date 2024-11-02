@@ -1,7 +1,7 @@
-import React, { type FC } from "react";
+import React, { type FC } from 'react';
 
-import styles from "./JoinsSelector.module.css";
-import { useBenchmarkContext } from "../../context/useBenchmarkContext";
+import styles from './JoinsSelector.module.css';
+import { useBenchmarkContext } from '../../context/useBenchmarkContext';
 
 interface Item {
   value: boolean;
@@ -12,28 +12,21 @@ const JoinsSelector: FC = () => {
   const { selectedItems, setSelectedItems } = useBenchmarkContext();
 
   const items: Item[] = [
-    { value: false, name: "Queries" },
-    { value: true, name: "Joins" },
+    { value: false, name: 'Queries' },
+    { value: true, name: 'Joins' },
   ];
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSelectedItems({
       ...selectedItems,
-      joins: e.target.value === "true",
+      joins: e.target.value === 'true',
     });
   };
 
   return (
-    <select
-      className={styles.button}
-      onChange={handleChange}
-      value={String(selectedItems.joins)}
-    >
+    <select className={styles.button} onChange={handleChange} value={String(selectedItems.joins)}>
       {items.map((item) => (
-        <option
-          key={item.name}
-          value={String(item.value)}
-        >
+        <option key={item.name} value={String(item.value)}>
           {item.name}
         </option>
       ))}
