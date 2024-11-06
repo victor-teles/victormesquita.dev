@@ -1,8 +1,9 @@
 ---
-title: Migrando do Prisma para o Drizzle
+title: Como migrar do Prisma para o Drizzle
 description: Guia passo a passo para uma transição tranquila e sem sofrimentos.
-slug: migrando-do-prisma-para-o-drizzle
+slug: como-migrar-do-prisma-para-o-drizzle
 date: Nov 1, 2024
+published: false
 ---
 
 Olá a todos os devs Node.js (Bunmeiros e Denosos inclusos) 👋
@@ -10,19 +11,15 @@ Olá a todos os devs Node.js (Bunmeiros e Denosos inclusos) 👋
 Recentemente realizei uma migração de uma `codebase` de um projeto que utilizava o [Prisma](https://prisma.io/) para o [Drizzle](https://drizzle.org/),
 e resolvi compartilhar algumas experiências que (eu sofri mas você não precisa) talvez possam ser úteis para você.
 
-{/* ## Primeiro de tudo, o que é o Drizzle?
-
-Brincadeira, se você está aqui, provavelmente já ouviu falar do Drizzle.
-Então pode seguir em frente! */}
-
-{/* ## Por que sair do Prisma?
-
-Prisma é um ORM sensacional,  */}
-
 ## Mas por que o Drizzle?
 
-Bem, por que ele é rápido, simples de configurar, typesafe e permite que você escreva suas queries no formato similar ao SQL.
+Drizzle ORM (ou somente Drizzle) é um Object Relational Mapper (ORM) leve, rápido e "typesafe".
+O Drizzle permite que você escreva suas queries no formato similar ao SQL e oferece suporte nativo a serverless.
+
+### SQL like (que??)
+
 
 Ainda não está convencido? Da uma olhada nesse benchmark 👇
 
 <DrizzleBenchmark />
+

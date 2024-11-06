@@ -17,7 +17,7 @@ export default async function HomePage() {
       <AboutMe />
       <Socials />
 
-      <h2 style={{ padding: 'var(--gap-quarter) 0' }}> Artigos 📝 </h2>
+      <h2 style={{ padding: 'var(--gap-quarter) 0' }}> Artigos</h2>
       <ContentListRSC />
 
       <h2 style={{ padding: 'var(--gap-quarter) 0' }}>Meus projetos ✨</h2>

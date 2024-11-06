@@ -1,17 +1,14 @@
 ---
-title: Sending a Slack message with fetch
-slug: slack-message-fetch
+title: Como identificar IDs não existentes no Postgres
+slug: como-identificar-ids-nao-existentes-postgres
 type: snippet
-date: Mar 30, 2024
+date: Nov 06, 2024
 ---
 
-I like using Slack bots for things like alerts and notifications and
-have needed this snippet enough to leave it here.
+Você já deve ter se deparado com uma situação onde você precisa achar IDs que não existem uma tabela específica no Postgres.
+Então eu vou te mostrar um snippet que eu uso para identificar se qualquer dados não está presente no banco.
 
-I use [slack-block-builder](https://github.com/raycharius/slack-block-builder) to
-build the message; writing raw slack blocks is a pain.
-
-```tsx
+```sql
 const res = await fetch('https://slack.com/api/chat.postMessage', {
   method: 'POST',
   headers: {

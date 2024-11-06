@@ -1,0 +1,23 @@
+.callout {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  border-radius: .25rem;
+  white-space: break-spaces;
+  width: fit-content;
+  margin-top: .25rem;
+  margin-left: -1ch;
+  position: relative;
+  background-color: var(--link);
+  color: var(--bg)
+}
+
+.calloutArrow {
+  left: 9.5ch;
+  background-color: var(--link);
+  border-top-width: 1px;
+  border-left-width: 1px;
+  width: .5rem;
+  height: .5rem;
+  position: absolute;
+  transform: translate(0, -50%) rotate(45deg) skewX(0) skewY(0) scaleX(1) scaleY(1);
+}
