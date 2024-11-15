@@ -36,7 +36,7 @@ export function PostBody({ children }: { children: string }) {
             [remarkCodeHike, chConfig],
           ],
           rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-          recmaPlugins: [[recmaCodeHike, chConfig]],
+          recmaPlugins: [[recmaCodeHike, chConfig]]
         },
       }}
       components={mdxComponents}

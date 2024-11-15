@@ -8,9 +8,11 @@ import { getTag, renderItem } from './render-item';
 export async function ContentListRSC() {
   const [posts, notes, reviews] = await Promise.all([getPosts(true), getNotes(), getReviews()]);
 
+
   const content = [...posts, ...notes, ...reviews].sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
+
 
   return (
     <>

@@ -9,6 +9,8 @@ import NextImage from 'next/image';
 import { Tweet } from 'react-tweet';
 import { MDXImage } from './mdx-image';
 import { MDXNote } from './mdx-note';
+import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
+
 
 export const mdxComponents: MDXComponents = {
   Code,
@@ -49,4 +51,12 @@ export const mdxComponents: MDXComponents = {
       <Tweet {...props} />
     </div>
   ),
+  table: (props) => <Table {...props} />,
+  thead: (props) => <TableHeader {...props} />,
+  tbody: (props) => <TableBody {...props} />,
+  tfoot: (props) => <TableFooter {...props} />,
+  th: (props) => <TableHead {...props} />,
+  tr: (props) => <TableRow {...props} />,
+  td: (props) => <TableCell {...props} />,
+  caption: (props) => <TableCaption {...props} />,
 };

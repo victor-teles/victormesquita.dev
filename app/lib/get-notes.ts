@@ -8,7 +8,6 @@ export const getNotes = cache(async () => {
   const filtered = notesWithMetadata
     .filter((post) => post !== null)
     .sort((a, b) => (a && b ? new Date(b.date).getTime() - new Date(a.date).getTime() : 0));
-
   return filtered;
 });
 

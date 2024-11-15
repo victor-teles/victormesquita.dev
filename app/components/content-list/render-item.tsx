@@ -12,7 +12,7 @@ export const renderItem = (item: Post | Note | Review) => {
     case 'review':
       return renderReview(item);
     default:
-      return null;
+      return renderNote(item);
   }
 };
 

@@ -1,4 +1,4 @@
-@import "./syntax.css";
+@import "./syntax-highlight.css";
 @import "./markdown.css";
 
 :root {
@@ -31,11 +31,15 @@
   --lighter-gray: rgb(39, 39, 42);
   --lightest-gray: #1a1a1a;
   --article-color: #eaeaea;
+  --fg-gray: #b5b3ad;
   --gray-alpha: rgba(255, 255, 255, 0.5);
   --selection: rgba(255, 255, 255, 0.88);
   --link: hsl(69, 81%, 61%);
   --green: #2ecc71;
   --red: #e74c3c;
+  --muted: #0F1629;
+  --muted-foreground: #7F8EA3;
+  --border: #1D283A;
 
   /* Syntax Highlighting */
   --token: #999;
@@ -58,10 +62,14 @@
   --lighter-gray: rgb(240, 240, 240);
   --lightest-gray: rgb(245, 245, 245);
   --article-color: #212121;
+  --fg-gray: #212121;
   --header-bg: rgba(255, 255, 255, 0.8);
   --gray-alpha: rgba(19, 20, 21, 0.5);
   --selection: rgba(0, 0, 0, 0.99);
   --link: hsl(69, 81%, 42%);
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --border: #E2E8F0;
 
   --token: #666;
   --comment: #999;
@@ -70,9 +78,11 @@
   --highlight: #eaeaea;
 }
 
-* {
+*,:after,:before {
   box-sizing: border-box;
+  border: 0 solid var(--border)
 }
+
 
 ::selection {
   text-shadow: none;
@@ -191,13 +201,9 @@ details {
   cursor: pointer;
 }
 
-table {
-  border: 1px solid gray;
-}
-
 td,
 th {
-  border: 1px solid gray;
+  border: 1px solid var(--border);
 }
 
 @media print {

@@ -48,7 +48,7 @@
 }
 
 .avatar .writtenBy {
-  color: #b5b3ad;
+  color: var(--fg-gray);
 }
 
 .content {

@@ -38,6 +38,7 @@ const ThemeSwitcher = ({
         onClick={() => setTheme(activeTheme === 'light' ? 'dark' : 'light')}
         aria-label="Change the theme"
         className={`${socialStyles.icon} ${className}`}
+        type='button'
       >
         {mounted ? (
           <FadeIn>

@@ -3,25 +3,39 @@ title: Como identificar IDs não existentes no Postgres
 slug: como-identificar-ids-nao-existentes-postgres
 type: snippet
 date: Nov 06, 2024
+published: true
 ---
 
-Você já deve ter se deparado com uma situação onde você precisa achar IDs que não existem uma tabela específica no Postgres.
-Então eu vou te mostrar um snippet que eu uso para identificar se qualquer dados não está presente no banco.
+Você já se deparou com a necessidade de identificar quais IDs de uma lista não existem em uma tabela específica no Postgres? Esse é um cenário comum, especialmente quando estamos sincronizando dados entre sistemas ou verificando inconsistências no banco de dados.
+
+Neste post, vou compartilhar um snippet que utilizo para verificar se determinados dados estão ausentes na tabela 👇
 
 ```sql
-const res = await fetch('https://slack.com/api/chat.postMessage', {
-  method: 'POST',
-  headers: {
-    // IMPORTANT! You need to set the charset to utf-8
-    'Content-Type': 'application/json; charset=utf-8',
-    // Create an app: https://api.slack.com/apps
-    Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-  },
-  body: Message()
-    // Get this from Slack or the channel URL.
-    // Be sure to invite the bot to the channel.
-    .channel('C1234567890')
-    .blocks(Blocks.Section().text('*Error:* ' + error), Blocks.Divider())
-    .buildToJSON(),
-})
+SELECT
+	id
+FROM
+--!ref Defina a lista de ids
+	unnest(ARRAY ['123', 'id_nao_existe']) AS temp_ids (id)
+WHERE
+--!ref Realiza o cruzamento dos ids temporários com a tabela
+	id NOT IN(SELECT "id" FROM "Tabela");
 ```
+
+# Resultado
+
+Supondo que a tabela Tabela contenha os seguintes dados:
+
+| id  |
+|-----|
+| 123 |
+| 456 |
+| 789 |
+
+
+Ao executar a consulta acima, o resultado será:
+
+|       id      |
+|---------------|
+| id_nao_existe |
+
+Isso significa que o ID `id_nao_existe` não está presente na tabela Tabela.

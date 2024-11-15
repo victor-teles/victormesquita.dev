@@ -1,0 +1,72 @@
+.tableWrapper {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  caption-side: bottom;
+  font-size: 0.875rem;
+}
+
+.tableHeaderRow {
+  border-bottom: 1px solid var(--border);
+}
+
+.tableBodyRowLast {
+  border-bottom: none;
+}
+
+.tableFooter {
+  border-top: 1px solid;
+  background-color: var(--muted);
+  font-weight: 600;
+}
+
+.tableFooterRowLast {
+  border-bottom: none;
+}
+
+.tableRow {
+  border-bottom: 1px solid;
+  transition: background-color 0.2s;
+}
+
+.tableRow:hover {
+  background-color: var(--muted);
+}
+
+.tableRowSelected {
+  background-color: var(--muted);
+}
+
+.tableHead {
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+.tableHeadCheckbox {
+  padding-right: 0;
+  transform: translateY(2px);
+}
+
+.tableCell {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+
+.tableCellCheckbox {
+  padding-right: 0;
+  transform: translateY(2px);
+}
+
+.tableCaption {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}

@@ -48,6 +48,7 @@ const FilterableList = <T extends Base>({
       return true;
     });
 
+
     return filtered;
   }, [items, search, selectedTag, tags]);
 
@@ -67,6 +68,8 @@ const FilterableList = <T extends Base>({
     });
     return Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
   }, [items, tags]);
+
+
 
   const selectedBadgeStyles: React.CSSProperties = {
     backgroundColor: 'var(--fg)',

@@ -7,7 +7,7 @@ import { footnotes, NumberFootNote } from './footnotes';
 import { callout } from './callout';
 
 export async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, 'github-dark');
+  const highlighted = await highlight(codeblock, "github-from-css");
   const noteAnnotations = highlighted.annotations.filter(
     ({ name }) => name === "ref",
   )
