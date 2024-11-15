@@ -1,5 +1,6 @@
 @import "./syntax-highlight.css";
 @import "./markdown.css";
+@import "./modern.css";
 
 :root {
   /* Spacing */
@@ -34,12 +35,11 @@
   --fg-gray: #b5b3ad;
   --gray-alpha: rgba(255, 255, 255, 0.5);
   --selection: rgba(255, 255, 255, 0.88);
-  --link: hsl(69, 81%, 61%);
+  --link: #D4EC4B;
   --green: #2ecc71;
   --red: #e74c3c;
-  --muted: #0F1629;
-  --muted-foreground: #7F8EA3;
-  --border: #1D283A;
+  --border: #27272A;
+  --header: hsla(0, 0%, 7%, 0.5);
 
   /* Syntax Highlighting */
   --token: #999;
@@ -66,10 +66,9 @@
   --header-bg: rgba(255, 255, 255, 0.8);
   --gray-alpha: rgba(19, 20, 21, 0.5);
   --selection: rgba(0, 0, 0, 0.99);
-  --link: hsl(69, 81%, 42%);
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  --border: #E2E8F0;
+  --link: #A8C214;
+  --border: #E4E4E7;
+  --header: rgb(240, 240, 240);
 
   --token: #666;
   --comment: #999;
@@ -154,6 +153,17 @@ hr {
   border-bottom: 1px solid var(--light-gray);
 }
 
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+ border: none;
+}
+blockquote {
+  border-left: none;
+  padding-left: 10px;
+}
+
 blockquote {
   font-style: italic;
   margin: 0;
@@ -201,10 +211,10 @@ details {
   cursor: pointer;
 }
 
-td,
+/* td,
 th {
   border: 1px solid var(--border);
-}
+} */
 
 @media print {
   :root {

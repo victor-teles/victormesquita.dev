@@ -1,6 +1,5 @@
 .frame {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
   background: var(--lightest-gray);
   border-radius: .25rem;
   position: relative;

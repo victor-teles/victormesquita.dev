@@ -5,15 +5,15 @@ import styles from './footer.module.css';
 const PostFooter = () => {
   return (
     <>
-      <hr style={{ margin: 0 }} />
+      <hr style={{ marginBlock: 50 }} />
       <footer className={styles.footer}>
         <p>
-          Thanks for reading! If you want to see future content, you can follow me{' '}
+          Obrigado por ler! Se você quer ver mais conteúdos no futuro, considere me seguir{' '}
           <Link external href="https://twitter.com/XVictorMesquita">
-            on Twitter
+            no Twitter
           </Link>{' '}
-          or subscribe to my
-          <Link href="/feed.xml"> RSS feed</Link>.
+          ou se inscreva no
+          <Link href="/feed.xml"> feed RSS</Link>.
         </p>
       </footer>
     </>

@@ -1,3 +1,4 @@
+
 .tableWrapper {
   position: relative;
   width: 100%;
@@ -29,16 +30,16 @@
 }
 
 .tableRow {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--border);
   transition: background-color 0.2s;
 }
 
 .tableRow:hover {
-  background-color: var(--muted);
+  background-color: var(--lighter-gray);
 }
 
 .tableRowSelected {
-  background-color: var(--muted);
+  background-color: var(--lighter-gray);
 }
 
 .tableHead {
@@ -47,7 +48,7 @@
   text-align: left;
   vertical-align: middle;
   font-weight: 600;
-  color: var(--muted-foreground);
+  background-color: var(--header);
 }
 
 .tableHeadCheckbox {
@@ -68,5 +69,4 @@
 .tableCaption {
   margin-top: 1rem;
   font-size: 0.875rem;
-  color: var(--muted-foreground);
 }

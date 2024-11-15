@@ -19,7 +19,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
 
   return (
     <div className={styles.frame}>
-      <div className={styles.title}>{highlighted.meta}</div>
+      {highlighted.meta&&<div className={styles.title}>{highlighted.meta}</div>}
       <CopyButton text={highlighted.code} />
       <Pre code={highlighted} handlers={[mark, diff, footnotes, callout]} />
 

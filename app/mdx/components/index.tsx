@@ -11,7 +11,6 @@ import { MDXImage } from './mdx-image';
 import { MDXNote } from './mdx-note';
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
 
-
 export const mdxComponents: MDXComponents = {
   Code,
   InlineCode,
