@@ -1,12 +1,12 @@
 ---
-title: Como identificar IDs não existentes no Postgres
-slug: como-identificar-ids-nao-existentes-postgres
+title: Como encontrar IDs ausentes em uma tabela PostgreSQL
+slug: identificar-ids-ausentes-postgresql
 type: snippet
 date: Nov 06, 2024
 published: true
 ---
 
-Você já se deparou com a necessidade de identificar quais IDs de uma lista não existem em uma tabela específica no Postgres? Esse é um cenário comum, especialmente quando estamos sincronizando dados entre sistemas ou verificando inconsistências no banco de dados.
+Você já precisou identificar quais IDs de uma lista não existem em uma tabela no PostgreSQL? Esse é um cenário comum, especialmente ao sincronizar dados entre sistemas ou ao verificar inconsistências no banco de dados.
 
 Neste post, vou compartilhar um snippet que utilizo para verificar se determinados dados estão ausentes na tabela 👇
 
@@ -14,7 +14,7 @@ Neste post, vou compartilhar um snippet que utilizo para verificar se determinad
 SELECT
 	id
 FROM
---!ref Defina a lista de ids
+--!ref Lista de ids que você deseja localizar
 	unnest(ARRAY ['123', 'id_nao_existe']) AS temp_ids (id)
 WHERE
 --!ref Realiza o cruzamento dos ids temporários com a tabela
