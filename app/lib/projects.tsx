@@ -4,6 +4,38 @@ import type { Project } from './types';
 
 const Projects: Project[] = [
   {
+    title: 'Pix.js',
+    description: 'Conjunto de ferramentas para integrar trabalhar com PIX',
+    href: 'https://pix-js.vercel.app',
+    role: 'Creator',
+    years: ['2025', 'present'],
+    type: 'project',
+  },
+  {
+    title: 'Playwright php',
+    description: 'Playwright para PHP',
+    href: 'https://github.com/victor-teles/playwright-php',
+    role: 'Creator',
+    years: ['2025', 'present'],
+    type: 'project',
+  },
+  {
+    title: 'PetPode',
+    description: 'Saiba o que seu pet pode comer 🐶',
+    href: 'https://petpode.food',
+    role: 'Creator',
+    years: ['2025', 'present'],
+    type: 'project',
+  },
+  {
+    title: 'Tipfy',
+    description: 'Compartilhe dicas de forma fácil e rápida 💡 - lataforma para influenciadores',
+    href: 'https://tipfy.pro/',
+    role: 'CTO',
+    years: ['2024', 'present'],
+    type: 'project',
+  },
+  {
     title: 'tora-spinner',
     description: 'A thread/worker spinner based on ora/yocto-spinner ✨',
     href: 'https://github.com/quirkie-io/tora',
