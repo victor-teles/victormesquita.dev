@@ -5,6 +5,7 @@ import { diff } from './diff';
 import { mark } from './mark';
 import { footnotes, NumberFootNote } from './footnotes';
 import { callout } from './callout';
+import { tokenTransitions } from './token-transitions';
 
 export async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-from-css");
@@ -21,7 +22,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
     <div className={styles.frame}>
       {highlighted.meta&&<div className={styles.title}>{highlighted.meta}</div>}
       <CopyButton text={highlighted.code} />
-      <Pre code={highlighted} handlers={[mark, diff, footnotes, callout]} />
+      <Pre code={highlighted} handlers={[mark, diff, footnotes, callout, tokenTransitions]} />
 
       <ul style={{ marginTop: '1rem', listStyleType: 'none' }}>
         {notes.map((ref, index) => (

@@ -61,9 +61,10 @@ Antes de começar, é importante entender como está estruturado o seu esquema n
 
 No Drizzle, você define o esquema utilizando TypeScript. Aqui está um exemplo de como migrar um modelo simples:
 
-**Prisma**:
-```prisma
-model User {
+<CodeSwitcher
+  type="switch"
+  lang="typescript"
+  prismaCode={`model User {
   id    Int     @id @default(autoincrement())
   name  String
   email String  @unique
@@ -76,12 +77,9 @@ model Post {
   content   String?
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])
-}
-```
-
-**Drizzle**:
-```typescript
-import { integer, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core';
+}`}
+  drizzleCode={`import { integer, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -98,8 +96,8 @@ export const posts = pgTable('posts', {
 
 export const userRelations = relations(users, ({ many }) => ({
   posts: many(posts),
-}));
-```
+}));`}
+/>
 
 </Step>
 
@@ -107,16 +105,23 @@ export const userRelations = relations(users, ({ many }) => ({
 
 No Prisma, a conexão com o banco é configurada no arquivo `prisma/.env`. No Drizzle, você pode configurar a conexão diretamente no código:
 
-```typescript
-import { drizzle } from 'drizzle-orm/node-postgres';
+<CodeSwitcher
+  type="switch"
+  lang="typescript"
+  prismaCode={`import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+export default prisma`}
+  drizzleCode={`import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export const db = drizzle(pool);
-```
+export const db = drizzle(pool);`}
+/>
 
 </Step>
 
@@ -124,32 +129,24 @@ export const db = drizzle(pool);
 
 Agora, é hora de migrar as queries. Aqui estão alguns exemplos de como converter queries comuns do Prisma para o Drizzle:
 
-**Prisma**:
-```typescript
-const user = await prisma.user.findUnique({
+<CodeSwitcher
+  type="switch"
+  lang="typescript"
+  prismaCode={`const user = await prisma.user.findUnique({
   where: { id: 1 },
    include: {
     posts: true,
   },
-});
-```
+});`}
+  drizzleCode={`import { eq } from 'drizzle-orm';
 
-**Drizzle**:
-```typescript
-import { eq } from 'drizzle-orm';
-
-const user = await db.select().from(users).where(eq(users.id, 1));
-```
-
-ou com relação:
-
-```typescript
-const userWithPosts = await db._query.users.findMany({
-	with: {
-		posts: true			
-	},
-});
-```
+const userWithPosts = await db.query.users.findFirst({
+  where: eq(users.id, 1),
+  with: {
+    posts: true
+  },
+});`}
+/>
 
 </Step>
 

@@ -1,0 +1,34 @@
+.root {
+  all: unset;
+  width: 42px;
+  height: 25px;
+  background-color: var(--lighter-gray);
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.root:focus {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--link);
+}
+
+.root[data-state="checked"] {
+  background-color: var(--link);
+}
+
+.thumb {
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 9999px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition);
+  transform: translateX(2px);
+  will-change: transform;
+}
+
+.root[data-state="checked"] .thumb {
+  transform: translateX(19px);
+}

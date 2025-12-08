@@ -11,10 +11,12 @@ import { MDXImage } from './mdx-image';
 import { MDXNote } from './mdx-note';
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
 import { Stepper, Step } from '@components/stepper';
+import CodeSwitcher from '@components/code-switcher';
 
 export const mdxComponents: MDXComponents = {
   Code,
   InlineCode,
+  CodeSwitcher: CodeSwitcher as any,
   Stepper,
   Step,
   img: MDXImage as any,
