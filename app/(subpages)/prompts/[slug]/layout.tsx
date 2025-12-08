@@ -1,7 +1,7 @@
 import Navigation from '@components/content-footer/navigation';
 import PostFooter from '@components/content-footer/post-footer';
 import getPosts from '@lib/get-posts';
-import getReviews from '@lib/get-prompts';
+import getPrompts from '@lib/get-prompts';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { JSX } from 'react';
@@ -20,7 +20,7 @@ export const generateMetadata = async ({
   }>;
 }): Promise<Metadata> => {
   const { slug } = await params;
-  const reviews = (await getReviews()).find((p) => p?.slug === slug);
+  const reviews = (await getPrompts()).find((p) => p?.slug === slug);
   return {
     title: reviews?.title,
     description: reviews?.description,
@@ -31,7 +31,7 @@ export const generateMetadata = async ({
 };
 
 async function getData({ slug }: { slug: string }) {
-  const reviews = await getReviews();
+  const reviews = await getPrompts();
   const noteIndex = reviews.findIndex((p) => p?.slug === slug);
 
   if (noteIndex === -1) {

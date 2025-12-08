@@ -1,10 +1,10 @@
 import { TerminalWindow } from '@components/terminal';
-import getReviews, { getReview } from '@lib/get-prompts';
+import getPrompts, { getPrompt } from '@lib/get-prompts';
 import { Code } from 'bright';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  const posts = await getReviews();
+  const posts = await getPrompts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -16,7 +16,7 @@ export default async function ReviewPage({
   }>;
 }) {
   const { slug } = await params;
-  const post = await getReview(slug);
+  const post = await getPrompt(slug);
   if (!post) return notFound();
 
   const src = `
