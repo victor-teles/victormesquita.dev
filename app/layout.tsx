@@ -67,7 +67,7 @@ export const metadata = {
   twitter: {
     title: 'Victor Mesquita',
     card: 'summary_large_image',
-    creator: '@XVictorMesquita',
+    creator: '@engineerdesoft',
   },
   icons: {
     shortcut: 'https://victormesquita.dev/favicons/favicon.ico',

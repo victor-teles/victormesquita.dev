@@ -1,29 +1,29 @@
 'use client';
 
 import BlockEntry from '@components/entry/block';
-import { Note, Post, Review } from '@lib/types';
+import { Note, Post, Prompts } from '@lib/types';
 
-export const renderItem = (item: Post | Note | Review) => {
+export const renderItem = (item: Post | Note | Prompts) => {
   switch (item.type) {
     case 'post':
       return renderPost(item);
     case 'note':
       return renderNote(item);
-    case 'review':
-      return renderReview(item);
+    case 'prompts':
+      return renderPrompts(item);
     default:
       return renderNote(item);
   }
 };
 
-export const getTag = (post: Post | Note | Review) => {
+export const getTag = (post: Post | Note | Prompts) => {
   switch (post.type) {
     case 'post':
       return ['post'];
     case 'note':
       return ['note'];
-    case 'review':
-      return ['review'];
+    case 'prompts':
+      return ['prompts'];
     default:
       return ['note'];
   }
@@ -56,15 +56,15 @@ function renderNote(note: Note) {
   );
 }
 
-function renderReview(review: Review) {
+function renderPrompts(prompts: Prompts) {
   return (
     <BlockEntry
-      key={review.slug}
-      href={`/reviews/${review.slug}`}
-      title={review.title}
-      date={new Date(review.date)}
-      description={review.description}
-      type={review.type || 'review'}
+      key={prompts.slug}
+      href={`/prompts/${prompts.slug}`}
+      title={prompts.title}
+      date={new Date(prompts.date)}
+      description={prompts.description}
+      type={prompts.type || 'prompts'}
     />
   );
 }

@@ -1,5 +1,5 @@
 import { TerminalWindow } from '@components/terminal';
-import getReviews, { getReview } from '@lib/get-reviews';
+import getReviews, { getReview } from '@lib/get-prompts';
 import { Code } from 'bright';
 import { notFound } from 'next/navigation';
 

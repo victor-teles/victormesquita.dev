@@ -10,10 +10,13 @@ import { Tweet } from 'react-tweet';
 import { MDXImage } from './mdx-image';
 import { MDXNote } from './mdx-note';
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
+import { Stepper, Step } from '@components/stepper';
 
 export const mdxComponents: MDXComponents = {
   Code,
   InlineCode,
+  Stepper,
+  Step,
   img: MDXImage as any,
   Image: NextImage as any,
   DrizzleBenchmark,

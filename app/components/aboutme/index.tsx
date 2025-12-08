@@ -4,8 +4,8 @@ const AboutMe = () => (
   <>
     <p>
       Atualmente trabalhando na{' '}
-      <Link href="https://www.sqala.tech/" external>
-        Sqala
+      <Link href="https://www.littlegoat.com.br" external>
+        Little Goat
       </Link>
       . Estou interessado em tech, open source, UX/UI design e construindo softwares legais (eu acho).
     </p>

@@ -9,7 +9,7 @@ const PostFooter = () => {
       <footer className={styles.footer}>
         <p>
           Obrigado por ler! Se você quer ver mais conteúdos no futuro, considere me seguir{' '}
-          <Link external href="https://twitter.com/XVictorMesquita">
+          <Link external href="https://twitter.com/engineerdesoft">
             no Twitter
           </Link>{' '}
           ou se inscreva no

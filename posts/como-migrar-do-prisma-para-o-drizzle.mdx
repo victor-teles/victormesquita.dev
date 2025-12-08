@@ -3,23 +3,168 @@ title: Como migrar do Prisma para o Drizzle
 description: Guia passo a passo para uma transição tranquila e sem sofrimentos.
 slug: como-migrar-do-prisma-para-o-drizzle
 date: Nov 1, 2024
-published: false
+published: true
 ---
-
-Olá a todos os devs Node.js (Bunmeiros e Denosos inclusos) 👋
 
 Recentemente realizei uma migração de uma `codebase` de um projeto que utilizava o [Prisma](https://prisma.io/) para o [Drizzle](https://drizzle.org/),
 e resolvi compartilhar algumas experiências que (eu sofri mas você não precisa) talvez possam ser úteis para você.
 
-## Mas por que o Drizzle?
+Antes de comerçar, o Drizzle ORM (ou somente Drizzle) é um Object Relational Mapper (ORM) leve, rápido e *typesafe*.
+Ele permite que você escreva suas queries no formato similar ao SQL e oferece suporte nativo a serverless.
 
-Drizzle ORM (ou somente Drizzle) é um Object Relational Mapper (ORM) leve, rápido e "typesafe".
-O Drizzle permite que você escreva suas queries no formato similar ao SQL e oferece suporte nativo a serverless.
 
-### SQL like (que??)
+## Principais vantagens do Drizzle
 
+Vamos falar um pouco sobre as principais vantagens do Drizzle em relação à outros ORMs e entender o porquê de migrar para ele.
+
+### Escrevendo SQL com segurança
+
+O Drizzle permite que você escreva consultas que se assemelham muito ao SQL, porém são escritas utilizando typescript, que permite a verificação de tipagem estática. Isso significa que você pode aproveitar o "autocomplete" do seu editor e também evitar erros comuns de sintaxe. 
+
+Um exemplo simples de uma query para buscar um usuário pelo ID:
+
+```typescript
+import { eq } from 'drizzle-orm';
+import { users } from './schema';
+
+// !callout[/user/] SELECT * FROM users WHERE id = 1;
+const user = await db.select().from(users).where(eq(users.id, 1));
+```
+
+### Performático
+
+Ele foi projetado para ser rápido e eficiente, minimizando a sobrecarga que alguns ORMs tradicionais podem introduzir. Isso é especialmente benéfico em ambientes serverless ou de alto impacto, onde a performance é crucial.
 
 Ainda não está convencido? Da uma olhada nesse benchmark 👇
 
 <DrizzleBenchmark />
 
+### Comunidade crescente e ativa
+
+Apesar de ser relativamente novo, o Drizzle tem uma comunidade ativa e em crescimento. 
+Isso significa que você pode encontrar suporte, tutoriais e exemplos que serão de grande ajuda na hora de aprender e resolver problemas.
+
+- [Discord](https://discord.com/invite/tCe773yFeZ)
+- [Twitter](https://x.com/drizzleorm)
+
+## Passo a passo para migrar
+
+<Stepper className="vertical-stepper">
+
+<Step title="Analisar o esquema atual">
+
+Antes de começar, é importante entender como está estruturado o seu esquema no Prisma. Revise os modelos definidos no arquivo `schema.prisma` e identifique as tabelas, relações e campos principais.
+
+</Step>
+
+<Step title="Criar o esquema no Drizzle">
+
+No Drizzle, você define o esquema utilizando TypeScript. Aqui está um exemplo de como migrar um modelo simples:
+
+**Prisma**:
+```prisma
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String  @unique
+  posts Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+}
+```
+
+**Drizzle**:
+```typescript
+import { integer, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }),
+  email: varchar('email', { length: 255 }).unique(),
+});
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 255 }),
+  content: text('content').nullable(),
+  authorId: integer('author_id').references(() => users.id),
+});
+
+export const userRelations = relations(users, ({ many }) => ({
+  posts: many(posts),
+}));
+```
+
+</Step>
+
+<Step title="Configurar a conexão com o banco">
+
+No Prisma, a conexão com o banco é configurada no arquivo `prisma/.env`. No Drizzle, você pode configurar a conexão diretamente no código:
+
+```typescript
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+export const db = drizzle(pool);
+```
+
+</Step>
+
+<Step title="Migrar queries">
+
+Agora, é hora de migrar as queries. Aqui estão alguns exemplos de como converter queries comuns do Prisma para o Drizzle:
+
+**Prisma**:
+```typescript
+const user = await prisma.user.findUnique({
+  where: { id: 1 },
+   include: {
+    posts: true,
+  },
+});
+```
+
+**Drizzle**:
+```typescript
+import { eq } from 'drizzle-orm';
+
+const user = await db.select().from(users).where(eq(users.id, 1));
+```
+
+ou com relação:
+
+```typescript
+const userWithPosts = await db._query.users.findMany({
+	with: {
+		posts: true			
+	},
+});
+```
+
+</Step>
+
+<Step title="Testar e validar">
+
+Após migrar o esquema e as queries, teste sua aplicação para garantir que tudo está funcionando como esperado. Verifique se as consultas estão retornando os dados corretos e se o desempenho está adequado.
+
+</Step>
+
+</Stepper>
+
+## Conclusão
+
+Migrar para o Drizzle pode parecer uma tarefa desafiadora, mas, seguindo um passo a passo estruturado se torna um processo tranquilo!
+
+Então para começar, eu recomendo iniciar com um projeto pequeno para se familiarizar com o processo e, aos poucos, entender como o ORM funciona antes de migrar projetos maiores!
+
+Obrigado por ler até aqui! 

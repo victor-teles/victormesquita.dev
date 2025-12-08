@@ -1,7 +1,7 @@
 import Navigation from '@components/content-footer/navigation';
 import PostFooter from '@components/content-footer/post-footer';
 import getPosts from '@lib/get-posts';
-import getReviews from '@lib/get-reviews';
+import getReviews from '@lib/get-prompts';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { JSX } from 'react';

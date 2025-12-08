@@ -3,19 +3,19 @@
 import { useState } from 'react';
 
 import BlockEntry from '@components/entry/block';
-import type { Review } from '@lib/types';
+import type { Prompts } from '@lib/types';
 import styles from '../posts-list/posts-list.module.css';
 
 type Props =
   | {
-      reviews: Review[];
+      prompts: Prompts[];
       paginate?: boolean;
     }
   | {
       skeleton: true;
     };
 
-const ReviewsList = (props: Props) => {
+const PromptsList = (props: Props) => {
   const [showMore, setShowMore] = useState(4);
 
   if ('skeleton' in props) {
@@ -28,12 +28,12 @@ const ReviewsList = (props: Props) => {
     );
   }
 
-  const { reviews, paginate } = props;
+  const { prompts, paginate } = props;
 
   return (
     <ul className={styles.container}>
-      {reviews.slice(0, paginate ? showMore : undefined).map((note) => {
-        const date = new Date(note.date).toLocaleDateString('en-US', {
+      {prompts.slice(0, paginate ? showMore : undefined).map((prompt) => {
+        const date = new Date(prompt.date).toLocaleDateString('en-US', {
           month: 'numeric',
           day: 'numeric',
           year: 'numeric',
@@ -42,15 +42,15 @@ const ReviewsList = (props: Props) => {
         return (
           <BlockEntry
             // TODO: Math.random is a bad hack.
-            key={`review-item-${note.slug || Math.random()}`}
-            href={`/reviews/${note.slug}`}
-            title={note.title}
+            key={`prompt-item-${prompt.slug || Math.random()}`}
+            href={`/prompts/${prompt.slug}`}
+            title={prompt.title}
             date={new Date(date)}
-            description={note.description}
+            description={prompt.description}
           />
         );
       })}
-      {paginate && showMore < reviews.length && (
+      {paginate && showMore < prompts.length && (
         <button
           onClick={() => {
             setShowMore(showMore + 4);
@@ -65,4 +65,4 @@ const ReviewsList = (props: Props) => {
   );
 };
 
-export default ReviewsList;
+export default PromptsList;

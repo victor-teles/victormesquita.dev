@@ -1,7 +1,7 @@
 import FilterableList from '@components/filterable-list';
 import getNotes from '@lib/get-notes';
 import getPosts from '@lib/get-posts';
-import getReviews from '@lib/get-reviews';
+import getReviews from '@lib/get-prompts';
 import { Suspense } from 'react';
 import { getTag, renderItem } from './render-item';
 

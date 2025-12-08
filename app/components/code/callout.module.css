@@ -7,15 +7,13 @@
   margin-top: .25rem;
   margin-left: -1ch;
   position: relative;
-  background-color: var(--link);
-  color: var(--bg)
+  color: var(--callout-fg);
+  background-color: var(--callout-bg);
 }
 
 .calloutArrow {
   left: 9.5ch;
-  background-color: var(--link);
-  border-top-width: 1px;
-  border-left-width: 1px;
+  background-color: var(--callout-bg);
   width: .5rem;
   height: .5rem;
   position: absolute;

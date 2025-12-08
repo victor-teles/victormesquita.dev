@@ -29,9 +29,9 @@ export type Note = Base & {
   type: 'snippet' | 'tip' | 'note';
 };
 
-export type Review = Base & {
+export type Prompts = Base & {
   date: string;
   body: string;
   slug: string;
-  type: 'review';
+  type: 'prompts';
 };

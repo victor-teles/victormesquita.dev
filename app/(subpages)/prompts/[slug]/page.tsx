@@ -1,4 +1,4 @@
-import getReviews, { getReview } from '@lib/get-reviews';
+import getReviews, { getReview } from '@lib/get-prompts';
 import { PostBody } from '@mdx/post-body';
 import { notFound } from 'next/navigation';
 

@@ -1,0 +1,91 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  counter-reset: step-counter;
+  margin-top: var(--gap-double);
+  margin-bottom: var(--gap-double);
+}
+
+.step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--gap-double);
+  counter-increment: step-counter;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The vertical line */
+.step::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+
+/* Hide line for the last step */
+.step:last-child::after {
+  display: none;
+}
+
+/* The number circle */
+.step::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--gray);
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Active/Hover state for the circle */
+.step:hover::before {
+  border-color: var(--fg);
+  color: var(--fg);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 4px var(--bg-alpha);
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--gap);
+  font-size: 1.25rem;
+  line-height: 32px; /* Match circle height */
+  font-weight: 600;
+  color: var(--fg);
+  transition: color 0.2s ease;
+}
+
+.step:hover .title {
+  color: var(--link);
+}
+
+.content {
+  color: var(--article-color);
+  font-size: 1rem;
+  line-height: 1.6;
+}
