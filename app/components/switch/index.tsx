@@ -3,6 +3,7 @@
 import * as React from "react"
 import * as SwitchPrimitives from "@radix-ui/react-switch"
 import styles from "./switch.module.css"
+import { DrizzleLogo, PrismaLogo } from "./icons"
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
@@ -13,7 +14,12 @@ const Switch = React.forwardRef<
     {...props}
     ref={ref}
   >
-    <SwitchPrimitives.Thumb className={styles.thumb} />
+    <SwitchPrimitives.Thumb className={styles.thumb}>
+      <div className={styles.iconWrapper}>
+        <PrismaLogo className={styles.prismaIcon} />
+        <DrizzleLogo className={styles.drizzleIcon} />
+      </div>
+    </SwitchPrimitives.Thumb>
   </SwitchPrimitives.Root>
 ))
 Switch.displayName = SwitchPrimitives.Root.displayName
