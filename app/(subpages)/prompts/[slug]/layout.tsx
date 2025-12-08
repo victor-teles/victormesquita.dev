@@ -1,6 +1,5 @@
 import Navigation from '@components/content-footer/navigation';
 import PostFooter from '@components/content-footer/post-footer';
-import getPosts from '@lib/get-posts';
 import getPrompts from '@lib/get-prompts';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -8,7 +7,7 @@ import { JSX } from 'react';
 import styles from '../../blog/[slug]/layout.module.css';
 
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const posts = await getPrompts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
