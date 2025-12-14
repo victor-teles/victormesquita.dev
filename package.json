@@ -36,7 +36,7 @@
     "htmlparser2": "9.1.0",
     "lodash.debounce": "4.0.8",
     "lucide-react": "^0.454.0",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "next-mdx-remote": "4.4.1",
     "next-remote-watch": "2.0.0",
     "next-themes": "0.3.0",
