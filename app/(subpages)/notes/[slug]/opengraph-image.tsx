@@ -12,7 +12,7 @@ export default async function ({
   params: { slug: string };
 }): Promise<ImageResponse> {
   const res = await fetch(
-    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/master/notes/${params.slug}.mdx`,
+    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/main/notes/${params.slug}.mdx`,
   );
 
   if (!res.ok) {

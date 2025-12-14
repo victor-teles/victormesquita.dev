@@ -11,7 +11,7 @@ export default async function ({
   params: { slug: string };
 }): Promise<ImageResponse> {
   const res = await fetch(
-    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/master/posts/${params.slug}.mdx`,
+    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/main/posts/${params.slug}.mdx`,
   );
 
   if (!res.ok) {
