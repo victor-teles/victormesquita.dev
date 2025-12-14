@@ -93,6 +93,9 @@ article *:not(pre) > code::after {
 
 article pre {
   overflow-x: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
   background: var(--lightest-gray);
   border-radius: var(--inline-radius);
   line-height: 1.8;
@@ -100,13 +103,10 @@ article pre {
   font-size: 14px;
 }
 
-/* if article pre has a div above it, remove the border radius up top */
 article div + pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-/* Linkable Headers */
 
 .header-link {
   /* padding-top: var(--header-height); */

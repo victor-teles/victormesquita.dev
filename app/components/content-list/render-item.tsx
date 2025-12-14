@@ -4,6 +4,7 @@ import BlockEntry from '@components/entry/block';
 import { Note, Post, Prompts } from '@lib/types';
 
 export const renderItem = (item: Post | Note | Prompts) => {
+  console.log(item)
   switch (item.type) {
     case 'post':
       return renderPost(item);

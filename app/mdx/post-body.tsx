@@ -12,7 +12,6 @@ import { mdxComponents } from './components';
 
 /** @type {import('codehike/mdx').CodeHikeConfig} */
 const chConfig = {
-  // optional (see code docs):
   components: { code: 'Code' },
 };
 

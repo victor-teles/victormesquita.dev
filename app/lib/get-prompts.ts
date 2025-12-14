@@ -11,7 +11,7 @@ export const getPrompts = cache(async () => {
     .map((prompt) => {
       return {
         ...prompt,
-        type: 'prompt',
+        type: 'prompts',
       };
     });
 

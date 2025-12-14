@@ -34,7 +34,7 @@ async function getData({ slug }: { slug: string }) {
   const noteIndex = reviews.findIndex((p) => p?.slug === slug);
 
   if (noteIndex === -1) {
-    throw new Error(`${slug} not found in notes. Did you forget to rename the file?`);
+    throw new Error(`${slug} not found in prompts. Did you forget to rename the file?`);
   }
 
   const note = reviews[noteIndex];
@@ -70,7 +70,7 @@ export default async function PostLayout({
         <div className={styles.avatar}>
           <Image src="/imgs/profile.jpeg" alt="Esse sou eu" width={30} height={30} className={styles.img} />
           <span>
-            <span className={styles.writtenBy}>Escrito por</span> Victor Mesquita
+             Victor Mesquita
           </span>
         </div>
 

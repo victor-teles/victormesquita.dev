@@ -1,6 +1,7 @@
 import {  Pre, RawCode, highlight } from 'codehike/code';
 import styles from './code.module.css';
 import { CopyButton } from './copy-button';
+import { DownloadButton } from './download-button';
 import { diff } from './diff';
 import { mark } from './mark';
 import { footnotes, NumberFootNote } from './footnotes';
@@ -21,11 +22,15 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
   return (
     <div className={styles.frame}>
       {highlighted.meta&&<div className={styles.title}>{highlighted.meta}</div>}
-      <CopyButton text={highlighted.code} />
+      <div className={styles.buttonsContainer}>
+        <DownloadButton text={highlighted.code} fileName={highlighted.meta || 'code.txt'} />
+        <CopyButton text={highlighted.code} />
+      </div>
       <Pre code={highlighted} handlers={[mark, diff, footnotes, callout, tokenTransitions]} />
 
       <ul style={{ marginTop: '1rem', listStyleType: 'none' }}>
         {notes.map((ref, index) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: fuckit
           <li key={index} style={{ fontSize: '.875rem', lineHeight: '1.25rem' }}>
             <NumberFootNote n={index + 1} />
             <span style={{ paddingLeft: '.25rem'}}>{ref}</span>
