@@ -8,10 +8,11 @@ export const runtime = 'edge';
 export default async function ({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<ImageResponse> {
+  const { slug } = await params;
   const res = await fetch(
-    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/main/prompts/${params.slug}.mdx`,
+    `https://raw.githubusercontent.com/victor-teles/victormesquita.dev/main/prompts/${slug}.mdx`,
   );
 
   if (!res.ok) {
