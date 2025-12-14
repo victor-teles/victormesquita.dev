@@ -1,8 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const size = { width: 1200, height: 600 };
-// TODO: update to support alt once nextjs has a solution for params
-export const alt = '';
+export const size = { width: 1200, height: 630 };
+export const alt = "Victor Mesquita's Website";
 export const contentType = 'image/png';
 
 export const runtime = 'edge';

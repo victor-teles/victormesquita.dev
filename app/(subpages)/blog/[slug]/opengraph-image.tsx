@@ -1,8 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const size = { width: 1200, height: 600 };
-// TODO: update to support alt once nextjs has a solution for params
-export const alt = '';
+export const size = { width: 1200, height: 630 };
+export const alt = 'Blog post by Victor Mesquita';
 export const contentType = 'image/png';
 export const runtime = 'edge';
 
@@ -16,16 +15,18 @@ export default async function ({
   );
 
   if (!res.ok) {
-    return new Response('Not found', { status: 404 });
+    return new ImageResponse(
+      <div style={{ display: 'flex', fontSize: 40, color: 'white', background: '#000', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+        Post not found
+      </div>,
+      { width: 1200, height: 630 }
+    );
   }
 
   const text = await res.text();
-  const title = text.match(/title: (.*)/)?.[1];
+  const title = text.match(/title: (.*)/)?.[1] || 'Untitled Post';
   const date = text.match(/date: (.*)/)?.[1];
-
-  if (!title) {
-    return new Response('Missing title', { status: 400 });
-  }
+  const description = text.match(/description: (.*)/)?.[1];
 
   const fontData = await fetch(new URL('../../../fonts/Inter-Medium.ttf', import.meta.url)).then((res) =>
     res.arrayBuffer(),
@@ -84,23 +85,33 @@ export default async function ({
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          padding: '0 50px',
+          padding: '0 80px',
           color: 'white',
           textAlign: 'center',
-          height: 630 - 50 - 50,
-          maxWidth: 1000,
+          height: 630 - 100,
+          maxWidth: 1040,
         }}
       >
-        {title && (
+        <div
+          style={{
+            fontSize: 70,
+            fontWeight: 900,
+            marginBottom: description ? 30 : 0,
+            lineHeight: 1.15,
+          }}
+        >
+          {title}
+        </div>
+        {description && (
           <div
             style={{
-              fontSize: 65,
-              fontWeight: 900,
-              marginBottom: 40,
-              lineHeight: 1.1,
+              fontSize: 28,
+              fontWeight: 500,
+              lineHeight: 1.4,
+              opacity: 0.85,
             }}
           >
-            {title}
+            {description}
           </div>
         )}
       </div>

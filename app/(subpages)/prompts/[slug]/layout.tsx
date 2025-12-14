@@ -19,12 +19,27 @@ export const generateMetadata = async ({
   }>;
 }): Promise<Metadata> => {
   const { slug } = await params;
-  const reviews = (await getPrompts()).find((p) => p?.slug === slug);
+  const prompt = (await getPrompts()).find((p) => p?.slug === slug);
   return {
-    title: reviews?.title,
-    description: reviews?.description,
+    title: prompt?.title,
+    description: prompt?.description,
     alternates: {
-      canonical: `https://victormesquita.dev/reviews/${slug}`,
+      canonical: `https://victormesquita.dev/prompts/${slug}`,
+    },
+    openGraph: {
+      title: prompt?.title,
+      description: prompt?.description,
+      url: `https://victormesquita.dev/prompts/${slug}`,
+      siteName: 'Victor Mesquita',
+      type: 'article',
+      publishedTime: prompt?.date,
+      authors: ['Victor Mesquita'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: prompt?.title,
+      description: prompt?.description,
+      creator: '@engineerdesoft',
     },
   };
 };

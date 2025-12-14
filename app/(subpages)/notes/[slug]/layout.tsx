@@ -27,6 +27,21 @@ export const generateMetadata = async ({
     alternates: {
       canonical: `https://victormesquita.dev/notes/${slug}`,
     },
+    openGraph: {
+      title: note?.title,
+      description: note?.description,
+      url: `https://victormesquita.dev/notes/${slug}`,
+      siteName: 'Victor Mesquita',
+      type: 'article',
+      publishedTime: note?.date,
+      authors: ['Victor Mesquita'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: note?.title,
+      description: note?.description,
+      creator: '@engineerdesoft',
+    },
   };
 };
 
