@@ -1,0 +1,218 @@
+.container {
+  /* Map to global variables */
+  --bg-app: var(--bg);
+  --bg-card: var(--lighter-gray);
+  --bg-input: var(--light-gray);
+  --text-primary: var(--fg);
+  --text-secondary: var(--gray);
+  --text-inverse: var(--bg);
+  
+  /* Accents */
+  --accent-mint: var(--link);
+  --accent-lime: var(--callout-fg);
+  
+  /* Chart Colors */
+  --chart-green: var(--green);
+  --chart-yellow: #FACC15;
+  --chart-purple: #C084FC;
+  --chart-red: var(--red);
+  
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  padding: 24px;
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cardSubtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chartContainer {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG Chart Styles */
+.chartLine {
+  fill: none;
+  stroke: var(--accent-mint);
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.chartArea {
+  fill: url(#greenGlow);
+  opacity: 0.2;
+}
+
+.chartGrid {
+  stroke: var(--border);
+  stroke-dasharray: 4 4;
+}
+
+.chartText {
+  fill: var(--text-secondary);
+  font-size: 10px;
+}
+
+.barLabel {
+  fill: var(--text-primary);
+  font-size: 12px;
+}
+
+.radarPolygon {
+  fill: var(--accent-mint);
+  fill-opacity: 0.2;
+  stroke: var(--accent-mint);
+  stroke-width: 2px;
+}
+
+.radarGrid {
+  fill: none;
+  stroke: var(--border);
+}
+
+.gaugeBackground {
+  fill: var(--bg-input);
+}
+
+.gaugeFill {
+  fill: var(--accent-mint);
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legendColor {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.container.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.compactRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.compactCard {
+  flex: 1;
+  min-width: 100px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.compactChartCard {
+  flex: 2;
+  min-width: 200px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compactLabel {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compactValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.expandButton {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+  width: 100%;
+  margin-top: 8px;
+  font-family: var(--font-sans);
+}
+
+.expandButton:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.headerActions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -12px;
+}
+
+.headerActions .expandButton {
+  width: auto;
+  margin-top: 0;
+}

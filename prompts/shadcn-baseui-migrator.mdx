@@ -7,35 +7,31 @@ date: Dec 14, 2025
 published: true
 ---
 
-<MCPRequirements mcps={[
-  { name: 'shadcn', url: 'https://ui.shadcn.com/docs/mcp' }
-]} />
-
-{/* <PromptFeatures features={[
-  {
-    title: 'Atualização de Dependências',
-    description: 'Remove pacotes Radix UI e instala Base UI automaticamente, atualizando todas as referências no projeto.'
-  },
-  {
-    title: 'Migração de Componentes',
-    description: 'Usa CLI do Shadcn para migrar componentes existentes para Base UI com comandos automatizados.'
-  },
-  {
-    title: 'Refatoração asChild',
-    description: 'Converte padrão asChild do Radix para render prop do Base UI, preservando toda funcionalidade.'
-  },
-  {
-    title: 'Ajuste de Delays',
-    description: 'Move propriedades de delay do HoverCard para HoverCardTrigger seguindo padrões do Base UI.'
-  },
-  {
-    title: 'Remoção do Slot',
-    description: 'Identifica e remove componente Slot do Radix UI, refatorando para elementos nativos.'
-  },
-  {
-    title: 'Modernização de Select',
-    description: 'Refatora SelectValue removendo placeholder e usando SelectItem vazio como padrão moderno.'
-  }
-]} /> */}
+<PromptMetrics 
+  variant="compact"
+  usageHistory={[
+    { date: '2024-01', value: 120 },
+    { date: '2024-02', value: 132 },
+    { date: '2024-03', value: 101 },
+    { date: '2024-04', value: 134 },
+    { date: '2024-05', value: 190 },
+    { date: '2024-06', value: 230 },
+    { date: '2024-07', value: 210 },
+    { date: '2024-08', value: 250 },
+    { date: '2024-09', value: 320 },
+    { date: '2024-10', value: 350 },
+    { date: '2024-11', value: 380 },
+    { date: '2024-12', value: 410 },
+  ]}
+  features={['Component Migration', 'Style Preservation', 'Accessibility Checks', 'Auto-Imports']}
+  mcpRequirements={[
+    { name: 'shadcn', url: 'https://ui.shadcn.com/docs/mcp' }
+  ]}
+  tokenConsumption={{ input: 450, output: 1200 }}
+  ratings={{ 5: 85, 4: 30, 3: 10, 2: 2, 1: 1 }}
+  successRate={{ success: 96, error: 4 }}
+  modelCompatibility={{ 'GPT-4': 95, 'Claude 3.5': 90, 'Gemini 1.5': 85, 'Llama 3': 60 }}
+  complexity={75}
+/>
 
 <PromptFile src="prompts/files/shadcn-baseui-migrator.md" />

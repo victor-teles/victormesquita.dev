@@ -15,6 +15,7 @@ import { PromptFeatures } from './prompt-features';
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
 import { Stepper, Step } from '@components/stepper';
 import CodeSwitcher from '@components/code-switcher';
+import { PromptMetrics } from '@components/prompt-metrics';
 
 export const mdxComponents: MDXComponents = {
   Code,
@@ -22,6 +23,7 @@ export const mdxComponents: MDXComponents = {
   CodeSwitcher: CodeSwitcher as any,
   Stepper,
   Step,
+  PromptMetrics,
   PromptFile,
   MCPRequirements,
   PromptFeatures,
