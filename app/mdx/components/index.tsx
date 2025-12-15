@@ -11,6 +11,7 @@ import { MDXImage } from './mdx-image';
 import { MDXNote } from './mdx-note';
 import { PromptFile } from './prompt-file';
 import { MCPRequirements } from './mcp-requirements';
+import { PromptFeatures } from './prompt-features';
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@components/table';
 import { Stepper, Step } from '@components/stepper';
 import CodeSwitcher from '@components/code-switcher';
@@ -23,6 +24,7 @@ export const mdxComponents: MDXComponents = {
   Step,
   PromptFile,
   MCPRequirements,
+  PromptFeatures,
   img: MDXImage as any,
   Image: NextImage as any,
   DrizzleBenchmark,
