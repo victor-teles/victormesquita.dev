@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 
 interface PromptMetricsProps {
-  usageHistory?: { date: string; value: number }[];
   features?: string[];
-  tokenConsumption?: { input: number; output: number };
-  ratings?: { [key: number]: number };
-  successRate?: { success: number; error: number };
+  models?: {
+    [key: string]: {
+      tokenConsumption: { input: number; output: number; total: number; limit: number };
+      cost: { average: number; total: number; currency: string };
+    };
+  };
   modelCompatibility?: { [key: string]: number };
   complexity?: number; // 0 to 100
   mcpRequirements?: { name: string; url: string }[];
@@ -15,12 +17,22 @@ interface PromptMetricsProps {
 }
 
 const DefaultMetrics: Required<Omit<PromptMetricsProps, 'variant'>> = {
-  usageHistory: Array.from({ length: 30 }, (_, i) => ({ date: `Day ${i + 1}`, value: Math.floor(Math.random() * 100) + 50 })),
   features: ['Zero-shot', 'Chain of Thought', 'Code Generation'],
-  tokenConsumption: { input: 300, output: 700 },
-  ratings: { 5: 120, 4: 45, 3: 10, 2: 5, 1: 2 },
-  successRate: { success: 95, error: 5 },
-  modelCompatibility: { 'GPT-4': 90, 'Claude 3.5': 85, 'Gemini 1.5': 95, 'Llama 3': 70, 'Mistral': 60 },
+  models: {
+    'Gemini 3 Pro': {
+      tokenConsumption: { input: 1200, output: 800, total: 2000, limit: 128000 },
+      cost: { average: 0.015, total: 12.50, currency: 'USD' },
+    },
+    'GPT 5.2': {
+      tokenConsumption: { input: 1100, output: 700, total: 1800, limit: 128000 },
+      cost: { average: 0.018, total: 15.50, currency: 'USD' },
+    },
+    'Opus 4.5': {
+      tokenConsumption: { input: 1000, output: 600, total: 1600, limit: 200000 },
+      cost: { average: 0.025, total: 20.50, currency: 'USD' },
+    }
+  },
+  modelCompatibility: { 'GPT-4o': 95, 'Claude 3.5 Sonnet': 98, 'Gemini 1.5 Pro': 92, 'Llama 3.1': 88 },
   complexity: 65,
   mcpRequirements: [],
 };
@@ -29,18 +41,31 @@ export const PromptMetrics: React.FC<PromptMetricsProps> = (props) => {
   const { variant = 'default', ...rest } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const data = { ...DefaultMetrics, ...rest };
+  
+  const modelNames = Object.keys(data.models);
+  const [selectedModel, setSelectedModel] = useState(modelNames[0]);
+  const currentModelMetrics = data.models[selectedModel] || data.models[modelNames[0]];
 
   if (variant === 'compact' && !isExpanded) {
     return (
       <div className={`${styles.container} ${styles.compact}`}>
         <div className={styles.compactRow}>
           <div className={styles.compactCard}>
-            <span className={styles.compactLabel}>Success Rate</span>
-            <span className={styles.compactValue}>{Math.round((data.successRate.success / (data.successRate.success + data.successRate.error)) * 100)}%</span>
+            <span className={styles.compactLabel}>Avg. Cost</span>
+            <span className={styles.compactValue}>{currentModelMetrics.cost.currency === 'USD' ? '$' : ''}{currentModelMetrics.cost.average.toFixed(3)}</span>
           </div>
           <div className={styles.compactCard}>
-            <span className={styles.compactLabel}>Complexity</span>
-            <span className={styles.compactValue}>{data.complexity < 25 ? 'Simple' : data.complexity < 50 ? 'Moderate' : data.complexity < 75 ? 'Complex' : 'Advanced'}</span>
+            <span className={styles.compactLabel}>Model</span>
+            <select 
+              value={selectedModel} 
+              onChange={(e) => setSelectedModel(e.target.value)}
+              className={styles.modelSelectCompact}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {modelNames.map(name => (
+                <option key={name} value={name}>{name}</option>
+              ))}
+            </select>
           </div>
           <div className={styles.compactCard}>
             <span className={styles.compactLabel}>Best Model</span>
@@ -50,15 +75,15 @@ export const PromptMetrics: React.FC<PromptMetricsProps> = (props) => {
         
         <div className={styles.compactRow}>
            <div className={styles.compactChartCard}>
-             <span className={styles.compactLabel}>Usage Trend</span>
-             <div style={{ height: '40px', width: '100%' }}>
-                <UsageHistoryChart data={data.usageHistory} compact />
-             </div>
-           </div>
-           <div className={styles.compactChartCard}>
              <span className={styles.compactLabel}>Features</span>
              <div style={{ height: '40px', width: '100%' }}>
                 <FeaturesList data={data.features} compact />
+             </div>
+           </div>
+           <div className={styles.compactChartCard}>
+             <span className={styles.compactLabel}>Context Window</span>
+             <div style={{ height: '40px', width: '100%' }}>
+                <TokenConsumptionChart data={currentModelMetrics.tokenConsumption} compact />
              </div>
            </div>
         </div>
@@ -90,70 +115,39 @@ export const PromptMetrics: React.FC<PromptMetricsProps> = (props) => {
           </button>
         </div>
       )}
-      {/* 1. Popularity & Engagement */}
-      <UsageHistoryChart data={data.usageHistory} />
-      <FeaturesList data={data.features} />
+      
+      <div className={styles.fullWidthCard} style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '12px' }}>
+        <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Select Model:</span>
+        <div className={styles.modelSelector}>
+          {modelNames.map(name => (
+            <button 
+              key={name}
+              className={`${styles.modelButton} ${selectedModel === name ? styles.modelButtonActive : ''}`}
+              onClick={() => setSelectedModel(name)}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 1. Performance & Reliability */}
+      {/* SuccessRateChart removed */}
+      <ComplexityChart value={data.complexity} />
 
       {/* 2. Cost & Efficiency */}
-      <TokenConsumptionChart data={data.tokenConsumption} />
+      <CostChart data={currentModelMetrics.cost} />
+      <TokenConsumptionChart data={currentModelMetrics.tokenConsumption} />
 
-      {/* 3. Quality & Satisfaction */}
-      <RatingChart data={data.ratings} />
-      <SuccessRateChart data={data.successRate} />
-
-      {/* 4. Advanced Insights */}
+      {/* 3. Capabilities & Compatibility */}
+      <FeaturesList data={data.features} />
       <ModelCompatibilityChart data={data.modelCompatibility} />
-      <ComplexityChart value={data.complexity} />
       <MCPRequirementsCard data={data.mcpRequirements} />
     </div>
   );
 };
 
 // --- Sub-components (Charts) ---
-
-const UsageHistoryChart = ({ data, compact }: { data: { date: string; value: number }[], compact?: boolean }) => {
-  const width = 300;
-  const height = compact ? 40 : 150;
-  const padding = compact ? 0 : 20;
-  
-  const maxValue = Math.max(...data.map(d => d.value));
-  const points = data.map((d, i) => {
-    const x = (i / (data.length - 1)) * (width - padding * 2) + padding;
-    const y = height - padding - (d.value / maxValue) * (height - padding * 2);
-    return `${x},${y}`;
-  }).join(' ');
-
-  const areaPoints = `${padding},${height - padding} ${points} ${width - padding},${height - padding}`;
-
-  if (compact) {
-    return (
-      <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none">
-          <polyline points={points} className={styles.chartLine} style={{ strokeWidth: 2 }} />
-      </svg>
-    )
-  }
-
-  return (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <span className={styles.cardTitle}>Usage History</span>
-        <span className={styles.cardSubtitle}>Last 30 Days</span>
-      </div>
-      <div className={styles.chartContainer}>
-        <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="greenGlow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--accent-mint)" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="var(--accent-mint)ccent-mint)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <polyline points={areaPoints} className={styles.chartArea} />
-          <polyline points={points} className={styles.chartLine} />
-        </svg>
-      </div>
-    </div>
-  );
-};
 
 const FeaturesList = ({ data, compact }: { data: string[], compact?: boolean }) => {
   if (compact) {
@@ -196,33 +190,84 @@ const FeaturesList = ({ data, compact }: { data: string[], compact?: boolean }) 
   );
 };
 
-const TokenConsumptionChart = ({ data }: { data: { input: number; output: number } }) => {
+const CostChart = ({ data }: { data: { average: number; total: number; currency: string } }) => {
+  return (
+    <div className={styles.card}>
+      <div className={styles.cardHeader}>
+        <span className={styles.cardTitle}>Execution Cost</span>
+        <span className={styles.cardSubtitle}>Estimated ({data.currency})</span>
+      </div>
+      <div className={styles.chartContainer} style={{ flexDirection: 'column', justifyContent: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+          <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Avg. per Run</span>
+          <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--accent-mint)' }}>
+            {data.currency === 'USD' ? '$' : ''}{data.average.toFixed(3)}
+          </span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+          <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Total Project Cost</span>
+          <span style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text-primary)' }}>
+            {data.currency === 'USD' ? '$' : ''}{data.total.toFixed(2)}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TokenConsumptionChart = ({ data, compact }: { data: { input: number; output: number; total: number; limit: number }, compact?: boolean }) => {
   const total = data.input + data.output;
   const inputPercent = (data.input / total) * 100;
   const outputPercent = (data.output / total) * 100;
+  const limitPercent = (data.total / data.limit) * 100;
+
+  if (compact) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', height: '100%', justifyContent: 'center' }}>
+        <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--bg-input)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ width: `${limitPercent}%`, backgroundColor: 'var(--accent-mint)', height: '100%' }} />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'var(--text-secondary)' }}>
+          <span>{data.total.toLocaleString()} tokens</span>
+          <span>{limitPercent.toFixed(1)}% of limit</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <span className={styles.cardTitle}>Token Consumption</span>
+        <span className={styles.cardSubtitle}>Context Window Usage</span>
       </div>
-      <div className={styles.chartContainer} style={{ flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ width: '100%', height: '40px', display: 'flex', borderRadius: '8px', overflow: 'hidden' }}>
-          <div style={{ width: `${inputPercent}%`, backgroundColor: 'var(--chart-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '12px', fontWeight: 'bold' }}>
+      <div className={styles.chartContainer} style={{ flexDirection: 'column', justifyContent: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+            <span style={{ color: 'var(--text-secondary)' }}>Total Usage</span>
+            <span style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>{data.total.toLocaleString()} / {data.limit.toLocaleString()}</span>
+          </div>
+          <div style={{ width: '100%', height: '12px', backgroundColor: 'var(--bg-input)', borderRadius: '6px', overflow: 'hidden' }}>
+            <div style={{ width: `${limitPercent}%`, backgroundColor: 'var(--accent-mint)', height: '100%' }} />
+          </div>
+        </div>
+
+        <div style={{ width: '100%', height: '30px', display: 'flex', borderRadius: '6px', overflow: 'hidden' }}>
+          <div style={{ width: `${inputPercent}%`, backgroundColor: 'var(--chart-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '11px', fontWeight: 'bold' }}>
             {Math.round(inputPercent)}%
           </div>
-          <div style={{ width: `${outputPercent}%`, backgroundColor: 'var(--accent-mint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '12px', fontWeight: 'bold' }}>
+          <div style={{ width: `${outputPercent}%`, backgroundColor: 'var(--accent-mint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '11px', fontWeight: 'bold' }}>
             {Math.round(outputPercent)}%
           </div>
         </div>
-        <div className={styles.legend}>
+        <div className={styles.legend} style={{ marginTop: '0' }}>
           <div className={styles.legendItem}>
             <div className={styles.legendColor} style={{ backgroundColor: 'var(--chart-purple)' }} />
-            Input (Context)
+            Input
           </div>
           <div className={styles.legendItem}>
             <div className={styles.legendColor} style={{ backgroundColor: 'var(--accent-mint)' }} />
-            Output (Generation)
+            Output
           </div>
         </div>
       </div>
@@ -260,66 +305,7 @@ const LatencyChart = ({ data }: { data: { p50: number; p90: number; p99: number 
   );
 };
 
-const RatingChart = ({ data }: { data: { [key: number]: number } }) => {
-  const total = Object.values(data).reduce((a, b) => a + b, 0);
-  const max = Math.max(...Object.values(data));
 
-  return (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <span className={styles.cardTitle}>Ratings</span>
-        <span className={styles.cardSubtitle}>{total} Reviews</span>
-      </div>
-      <div className={styles.chartContainer} style={{ flexDirection: 'column', gap: '8px', alignItems: 'stretch' }}>
-        {[5, 4, 3, 2, 1].map((star) => (
-          <div key={star} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ width: '10px', fontSize: '12px', color: 'var(--text-secondary)' }}>{star}</span>
-            <div style={{ flex: 1, backgroundColor: 'var(--bg-input)', borderRadius: '4px', height: '6px' }}>
-              <div 
-                style={{ 
-                  width: `${(data[star] / max) * 100}%`, 
-                  backgroundColor: star >= 4 ? 'var(--accent-mint)' : star === 3 ? 'var(--chart-yellow)' : 'var(--chart-red)', 
-                  height: '100%',
-                  borderRadius: '4px'
-                }} 
-              />
-            </div>
-            <span style={{ width: '30px', fontSize: '10px', color: 'var(--text-secondary)', textAlign: 'right' }}>{data[star]}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const SuccessRateChart = ({ data }: { data: { success: number; error: number } }) => {
-  const total = data.success + data.error;
-  const successPercent = (data.success / total) * 100;
-  
-  return (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <span className={styles.cardTitle}>Success Rate</span>
-      </div>
-      <div className={styles.chartContainer}>
-        <svg width="200" height="120" viewBox="0 0 200 120">
-          <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="var(--bg-input)" strokeWidth="20" strokeLinecap="round" />
-          <path 
-            d="M 20 100 A 80 80 0 0 1 180 100" 
-            fill="none" 
-            stroke={successPercent > 90 ? "var(--accent-mint)" : "var(--chart-yellow)"} 
-            strokeWidth="20" 
-            strokeLinecap="round"
-            strokeDasharray={`${(successPercent / 100) * (Math.PI * 80)} ${Math.PI * 80}`}
-          />
-          <text x="100" y="90" textAnchor="middle" fill="var(--text-primary)" fontSize="32" fontWeight="bold">
-            {Math.round(successPercent)}%
-          </text>
-        </svg>
-      </div>
-    </div>
-  );
-};
 
 const ModelCompatibilityChart = ({ data }: { data: { [key: string]: number } }) => {
   const models = Object.keys(data);

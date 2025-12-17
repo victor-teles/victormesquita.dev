@@ -6,8 +6,9 @@
     "lint": "biome check app --write",
     "format": "biome format --write app",
     "dev": "next dev -p 3129",
-    "build": "concurrently \"yarn:build-*\"",
+    "build": "yarn build-metrics && concurrently \"yarn:build-next\" \"yarn:build-rss\"",
     "build-next": "next build",
+    "build-metrics": "bun scripts/calculate-metrics.ts",
     "build-rss": "ts-node --project ./node.tsconfig.json scripts/rss",
     "analyze": "ANALYZE=true yarn build-next",
     "start": "next start"
@@ -77,6 +78,7 @@
     "rehype-slug": "5.1.0",
     "remark-gfm": "3.0.1",
     "rss": "1.2.2",
+    "tokenlens": "^2.0.0-alpha.3",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
     "typescript-plugin-css-modules": "5.0.1"

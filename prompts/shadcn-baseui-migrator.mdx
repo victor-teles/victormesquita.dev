@@ -9,26 +9,12 @@ published: true
 
 <PromptMetrics 
   variant="compact"
-  usageHistory={[
-    { date: '2024-01', value: 120 },
-    { date: '2024-02', value: 132 },
-    { date: '2024-03', value: 101 },
-    { date: '2024-04', value: 134 },
-    { date: '2024-05', value: 190 },
-    { date: '2024-06', value: 230 },
-    { date: '2024-07', value: 210 },
-    { date: '2024-08', value: 250 },
-    { date: '2024-09', value: 320 },
-    { date: '2024-10', value: 350 },
-    { date: '2024-11', value: 380 },
-    { date: '2024-12', value: 410 },
-  ]}
   features={['Component Migration', 'Style Preservation', 'Accessibility Checks', 'Auto-Imports']}
   mcpRequirements={[
     { name: 'shadcn', url: 'https://ui.shadcn.com/docs/mcp' }
   ]}
-  tokenConsumption={{ input: 450, output: 1200 }}
-  ratings={{ 5: 85, 4: 30, 3: 10, 2: 2, 1: 1 }}
+  tokenConsumption={{ input: 2930, output: 7325, total: 10255, limit: 128000 }}
+  cost={{ average: 0.031, total: 152.30, currency: 'USD' }}
   successRate={{ success: 96, error: 4 }}
   modelCompatibility={{ 'Gemini 3.0 pro': 95, 'Opus 4.5': 95, 'Sonnet 4.5': 80 }}
   complexity={40}
